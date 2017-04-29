@@ -32,20 +32,12 @@ $ python -m SimpleHTTPServer 9000
 and, in your browser, navigate to
 
 ```
-http://127.0.0.1:9000/public
+http://127.0.0.1:9000
 ```
 
 
 ---
 
-## License
-
-[MIT license][mit-license].
-
-
 ## Copyright
 
 Copyright &copy; 2017. Athan Reines.
-
-
-[mit-license]: http://opensource.org/licenses/MIT
