@@ -1,0 +1,1250 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Talk | Node.js Interactive 2016 | Math in V8 is Broken and How We Can Fix It</title>
+
+	<meta name="description" content="The built-in JavaScript Math library is used in virtually every Node.js application, from generating random ids to calculating exponential back-off times to computing basic performance metrics. When using the Math library, most developers simply assume that the underlying implementations are accurate, performant, and correctly implemented. In this presentation, I discuss why this assumption is often false and show the various ways in which the standard library is broken. The presentation includes the algorithms used, their performance and accuracy, and how they have downstream effects on users of these libraries. The presentation concludes by highlighting how community solutions are stepping up to fix these problems and identity opportunities for additional improvements.">
+	<meta name="author" content="Athan Reines">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="stylesheet" href="css/grid.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/white.css">
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="css/code/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script src="js/lib/reveal/pdf.js"></script>
+
+	<!--[if lt IE 9]>
+	<script src="js/lib/reveal/html5shiv.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section data-background="img/title_slide_bkgd.jpg">
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" id="title-slide-part-1">
+				<h1>Math in V8 is Broken</h1>
+				<p>
+					<small><a href="https://github.com/kgryte"><i class="fa fa-github"></i> Athan Reines</a> / <a href="https://twitter.com/kgryte"><i class="fa fa-twitter"></i> @kgryte</a></small>
+				</p>
+
+				<aside class="notes">
+					<p>
+						Hi! Thank you for coming to this talk.
+					</p>
+					<p>
+						I am here today to talk about math. I should note that, while the title of this talk explicitly mentions V8, much of the content applies to other JavaScript engines, as well. And further, the concept that math is broken extends beyond any particular engine and also includes JavaScript at the specification level.
+					</p>
+					<p>
+						Without further ado...
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2>Standard Library</h1>
+
+				<aside class="notes">
+					<p>
+						The JavaScript standard library is often a developer's first introduction to math in JavaScript and its math functions are commonly used in JavaScript applications.
+					</p>
+					<p>
+						To review...
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2>ES5</h2>
+
+				<div class="fragment row">
+					<ul class="column column-3">
+						<li>acos</li>
+						<li>asin</li>
+						<li>atan</li>
+						<li>atan2</li>
+						<li>cos</li>
+						<li>sin</li>
+						<li>tan</li>
+					</ul>
+					<ul class="column column-3">
+						<li>abs</li>
+						<li>exp</li>
+						<li>log (ln)</li>
+						<li>pow</li>
+						<li>sqrt</li>
+					</ul>
+					<ul class="column column-3">
+						<li>ceil</li>
+						<li>floor</li>
+						<li>round</li>
+					</ul>
+					<ul class="column column-2">
+						<li>max</li>
+						<li>min</li>
+						<li>random</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						In ES5, the standard math library consisted of 18 functions and 8 constants. These functions can be categorized as trigonometric, other special functions, including rounding, and miscellaneous, including a PRNG.
+					</p>
+				</aside>
+			</section>
+
+			<!-- <section class="center">
+				<h2>ES5</h2>
+
+				<div class="row">
+					<div class="column column-4">&nbsp;</div>
+					<ul class="column column-3">
+						<li>E</li>
+						<li>LN2</li>
+						<li>LN10</li>
+						<li>LOG2E</li>
+					</ul>
+					<ul class="column column-3">
+						<li>LOG10E</li>
+						<li>PI</li>
+						<li>SQRT1_2</li>
+						<li>SQRT2</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<ul>
+						<li>8 constants</li>
+					</ul>
+				</aside>
+			</section> -->
+
+			<section class="center">
+				<h2>ES2015/ES6</h2>
+
+				<div class="fragment row">
+					<ul class="column column-3">
+						<li>acosh</li>
+						<li>asinh</li>
+						<li>atanh</li>
+						<li>cosh</li>
+						<li>sinh</li>
+						<li>tanh</li>
+					</ul>
+					<ul class="column column-3">
+						<li>sign</li>
+						<li>cbrt</li>
+						<li>expm1</li>
+						<li>log10</li>
+						<li>log1p</li>
+						<li>log2</li>
+					</ul>
+					<ul class="column column-3">
+						<li>fround</li>
+						<li>trunc</li>
+					</ul>
+					<ul class="column column-2">
+						<li>hypot</li>
+						<li>clz32</li>
+						<li>imul</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						ES2015/ES6 added 17 more functions to the standard math library. Again, these functions are broken down into trigonometric, other special functions, including rounding, and miscellaneous.
+					</p>
+					<p>
+						The addition of these 17 functions means the JavaScript standard math library has 35 functions.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2>Comparison</h1>
+
+				<aside class="notes">
+					<p>
+						For comparison, let us compare the JavaScript standard Math library to another language.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2>Golang</h2>
+
+				<div class="fragment row">
+					<ul class="column column-3">
+						<li>Abs</li>
+						<li>Acosh</li>
+						<li>Asin</li>
+						<li>Asinh</li>
+						<li>Atan</li>
+						<li>Atan2</li>
+						<li>Atanh</li>
+						<li>Cbrt</li>
+						<li>Ceil</li>
+						<li>Copysign</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Cos</li>
+						<li>Cosh</li>
+						<li>Dim</li>
+						<li>Erf</li>
+						<li>Erfc</li>
+						<li>Exp</li>
+						<li>Exp2</li>
+						<li>Expm1</li>
+						<li>Float32bits</li>
+						<li>Float64bits</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Floor</li>
+						<li>Frexp</li>
+						<li>Gamma</li>
+						<li>Hypot</li>
+						<li>Ilogb</li>
+						<li>J0</li>
+						<li>J1</li>
+						<li>Jn</li>
+						<li>Ldexp</li>
+						<li>Lgamma</li>
+					</ul>
+					<ul class="column column-2">
+						<li>Log</li>
+						<li>Log10</li>
+						<li>Log1p</li>
+						<li>Log2</li>
+						<li>Logb</li>
+						<li>Max</li>
+						<li>Min</li>
+						<li>Mod</li>
+						<li>Modf</li>
+						<li>Nextafter</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						Once again, we find trigonometric functions, various other special functions, and lower level functions for manipulating and generating floating-point numbers.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2>Golang (cont.)</h2>
+
+				<div class="fragment row">
+					<ul class="column column-3">
+						<li>NextAfter32</li>
+						<li>Pow</li>
+						<li>Pow10</li>
+						<li>Signbit</li>
+						<li>Sin</li>
+						<li>Sincos</li>
+						<li>Sinh</li>
+						<li>Sqrt</li>
+						<li>Tan</li>
+						<li>Tanh</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Trunc</li>
+						<li>Y0</li>
+						<li>Y1</li>
+						<li>Yn</li>
+						<li>ExpFloat64</li>
+						<li>Float64</li>
+						<li>Int</li>
+						<li>Int63</li>
+						<li>NormFloat64</li>
+						<li>Perm</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Uint32</li>
+						<li>Zipf</li>
+						<li>(Complex)</li>
+						<li>(Big)</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						In total, the Golang standard math library has 54 functions (JS has 35), 8+ PRNGs, as well as support for 64-bit and 128-bit complex numbers. Notably, Golang has equivalents for most C/C++ standard math library functions.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2>So what?</h2>
+
+				<aside class="notes">
+					<p>
+						You may be asking why you should care that some other language has more built-in math functions than JavaScript. The reasons are two-fold.
+					</p>
+					<p>
+						First, just to point out that JavaScript, a 20+ year old language, is pretty deficient in terms of basic math functionality.
+					</p>
+					<p>
+						Second, these type of basic math functions are critical, fundamental building blocks for other higher order mathematical functions. Many numeric computing libraries, especially for computing statistics and machine learning, rely extensively on these basic math functions. Thus, their availability is an important factor in enabling more complex numeric computing applications. The more tools you have at your disposal, the fewer your limitations and the more things you can create.
+					</p>
+					<p>
+						And because of their importance and widespread use, ensuring that basic math functions are performant and accurate is critical. If these functions are not accurate, their errors propagate through downstream consumers and inevitably lead to significant deviations from expected results.
+					</p>
+					<p>
+						And speaking of errors...
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2>Bugs</h1>
+
+				<aside class="notes">
+					<p>
+						Bugs.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2>V8 and Node</h2>
+
+				<table>
+					<tr>
+						<th>Node</th>
+						<th>EOL</th>
+						<th>V8</th>
+						<th>Release</th>
+					</tr>
+					<tr>
+						<td>0.10.44</td>
+						<td>10-2016</td>
+						<td>3.14.5.9</td>
+						<td>05-2013</td>
+					</tr>
+					<tr>
+						<td>0.12.17</td>
+						<td>01-2017</td>
+						<td>3.28.71.19</td>
+						<td>11-2014</td>
+					</tr>
+					<!-- <tr>
+						<td>1.8.4</td>
+						<td>N/A</td>
+						<td>4.1.0.27</td>
+						<td>03-2015</td>
+					</tr>
+					<tr>
+						<td>2.5.0</td>
+						<td>N/A</td>
+						<td>4.2.77.21</td>
+						<td>05-2015</td>
+					</tr>
+					<tr>
+						<td>3.3.1</td>
+						<td>N/A</td>
+						<td>4.4.63.30</td>
+						<td>08-2015</td>
+					</tr> -->
+					<tr>
+						<td>4.6.2</td>
+						<td>04-2018</td>
+						<td>4.5.103.42</td>
+						<td>08-2015</td>
+					</tr>
+					<tr>
+						<td>5.12.0</td>
+						<td>06-2016</td>
+						<td>4.6.85.32</td>
+						<td>11-2015</td>
+					</tr>
+					<tr>
+						<td>6.9.1</td>
+						<td>04-2019</td>
+						<td>5.1.281.84</td>
+						<td>07-2016</td>
+					</tr>
+					<tr>
+						<td>7.2.0</td>
+						<td>06-2017</td>
+						<td>5.4.500.43</td>
+						<td>11-2016</td>
+					</tr>
+				</table>
+
+				<aside class="notes">
+					<p>
+						To set the stage, the provided table shows, for each Node version, the underlying V8 engine. Note that this table is not fixed. Node versions having the same major version may include different versions of V8, as Node.js maintainers pull in updated V8 versions.
+					</p>
+					<p>
+						Of particular interest is the fact that a V8 version has a relatively long life due to its association with Node. For instance, by the time Node v4 reaches its end-of-life in 2018, the associated V8 engine will be more than two years old. Accordingly, any bug fixes and enhancements which happen during the interim (e.g., in V8 versions 5 and later) will not be present in Node v4. And given that Node versions find use long after they have been EOL'd, bugs may linger for many years to come.
+					</p>
+					<p>
+						In short: old bugs are still bugs.
+					</p>
+					<p>
+						With this in mind...
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Math.sin/Math.cos</h2>
+				<pre><code class="hljs javascript" contenteditable>
+var x = Math.pow( 2, 120 );
+// returns 1.329227995784916e+36
+
+var y = Math.sin( x );
+// returns: -0.8783788442551665
+// expected: 0.377820109360752
+
+y = Math.cos( x );
+// returns:   0.47796506772457525
+// expected: -0.9258790228548378
+				</code></pre>
+
+				<div class="row">
+					<ul class="column column-3">
+						<li>Node v0.10</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						For certain values, Math.sin returns inaccurate results.
+					</p>
+					<p>
+						Who does it affect? Node version 0.10.
+					</p>
+					<p>
+						See V8 issues <a href="https://bugs.chromium.org/p/v8/issues/detail?id=3006">3006</a> and <a href="https://bugs.chromium.org/p/v8/issues/detail?id=3089">3089</a>.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">NaN</h2>
+
+				<pre><code class="hljs javascript" contenteditable>
+var nan1 = 0.0 / 0.0;
+var nan2 = Number.POSITIVE_INFINITY / Number.POSITIVE_INFINITY;
+
+var arr = [ nan1, nan2 ];
+var FLOAT64_VIEW = new Float64Array( arr );
+var INT32_VIEW = new Int32Array( FLOAT64_VIEW.buffer );
+
+var isnan1 = ( FLOAT64_VIEW[0] !== FLOAT64_VIEW[0] );
+// returns true
+
+var isnan2 = ( FLOAT64_VIEW[1] !== FLOAT64_VIEW[1] );
+// returns true
+
+var bool = ( nan1 !== nan2 );
+// returns true
+
+var int11 = INT32_VIEW[ 0 ];
+var int12 = INT32_VIEW[ 1 ];
+var int21 = INT32_VIEW[ 2 ];
+var int22 = INT32_VIEW[ 3 ];
+
+console.log( '%d|%d and %d|%d', int11, int12, int21, int22 );
+// => 0|2146959360 and 0|-524288
+				</code></pre>
+
+				<div class="row">
+					<ul class="column column-3">
+						<li>Node v0.12</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Node v4</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Node v6</li>
+					</ul>
+					<ul class="column column-2">
+						<li>Node v7</li>
+					</ul>
+				</div>
+
+				<div class="row">
+					<ul class="column column-3">
+						<li>Node v0.10*</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						The existence of distinguishable NaNs is not necessarily a bad thing. The IEEE 754 specification discusses use cases, and, if you review older numeric computing libraries, you will see prevalent use of signaling and non-signaling NaNs. However, most developers are more than likely not aware that NaN values are not canonicalized on write (for reasons of performance). And that lack of awareness is a potential source of bugs.
+					</p>
+					<p>
+						Note, also, that, on some Windows systems and Node v0.10, you can manipulate the bit sequence within typed arrays to generate a distinguishable NaN, where `NaN == NaN`.
+					</p>
+					<p>
+						See also <a href="https://github.com/tc39/ecma262/issues/635">"Canonical NaNs"</a> and <a href="https://github.com/ljharb/get-nans/blob/master/index.js">get-nans</a>.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Math.pow</h2>
+
+				<pre><code class="hljs javascript" contenteditable>
+var x = Math.pow( 10, 308 );
+// returns:  1.0000000000000006e+308
+// expected: 1.0e+308
+				</code></pre>
+
+				<div class="row">
+					<ul class="column column-6">
+						<li>Node v0.10+</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						Admittedly, the error is only 3 ulp; however, those 3 ulp matter. Inaccurate results for integer inputs a) is counterintuitive because 10**308 is representable as a double (so not the same counterintuitive as 0.1 + 0.2 != 0.3) and b) ends up causing downstream accuracy issues for higher order mathematical functions as we discovered while writing such functions.
+					</p>
+					<p>
+						See V8 issues <a href="https://bugs.chromium.org/p/v8/issues/detail?id=3599">3599</a> and <a href="https://bugs.chromium.org/p/v8/issues/detail?id=5157">5157</a>.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Algorithm</h2>
+
+				<pre><code class="hljs javascript" contenteditable>
+function pow( x, y ) {
+    var m = x;
+    var n = y;
+    var p = 1;
+    while ( n !== 0 ) {
+        if ( ( n & 1 ) !== 0 ) {
+            p *= m;
+        }
+        m *= m;
+        if ( ( n & 2 ) !== 0 ) {
+            p *= m;
+        }
+        m *= m;
+        n >>= 2;
+    }
+    return p;
+}
+				</code></pre>
+
+				<aside class="notes">
+					<p>
+						If we examine the algorithm used to perform exponentiation for integer inputs, the reason for the imprecision becomes evident. If you were to log each iteration of the while loop, you would discover that results start going awry by the third iteration due to error accumulation.
+					</p>
+					<p>
+						So why did implementers opt for this algorithm over a more accurate pow algorithm? The reason is because a rigorous pow algorithm is complex, involving a fair amount of special cases and low-level floating-point bit manipulation.
+					</p>
+					<p>
+						So why does a more accurate pow algorithm matter? The complexity is not for the sake of complexity. Considerable effort is needed to compute accurate results. And those accurate results are needed by downstream consumers. Otherwise, anyone who builds on top of Math.pow must sacrifice accuracy and perform various adjustments to ensure results "match" reference implementations.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Math.atanh</h2>
+				<pre><code class="hljs javascript" contenteditable>
+var y = Math.atanh( 1.0e-10 );
+// returns:  1.000000082640371e-10
+// expected: 1.0e-10
+				</code></pre>
+				<div class="row">
+					<ul class="column column-3">
+						<li>Node v0.12</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Node v4</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Node v6</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						For certain values, Math.atanh returns inaccurate results. Fixed in Node v7.
+					</p>
+					<p>
+						See V8 issue <a href="https://bugs.chromium.org/p/v8/issues/detail?id=3511">3511</a>.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Math.acosh</h2>
+				<pre><code class="hljs javascript" contenteditable>
+var y = Math.acosh( 1.0 + 1.0e-10 );
+// returns:  0.000014142136208733941
+// expected: 0.000014142136208675862
+				</code></pre>
+				<div class="row">
+					<ul class="column column-3">
+						<li>Node v0.12</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Node v4</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Node v6</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						For certain values, Math.acosh returns inaccurate results. Fixed in Node v7.
+					</p>
+					<p>
+						See V8 issue <a href="https://bugs.chromium.org/p/v8/issues/detail?id=3509">3509</a>.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Math.asinh</h2>
+				<pre><code class="hljs javascript" contenteditable>
+var y = Math.asinh( 1.0e-50 );
+// returns:  0.0
+// expected: 1.0e-50
+
+y = Math.asinh( 1.0e200 );
+// returns   +infinity
+// expected: 461.2101657793691
+				</code></pre>
+				<div class="row">
+					<ul class="column column-3">
+						<li>Node v0.12</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Node v4</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Node v6</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						For certain values, Math.asinh returns inaccurate results. Fixed in Node v7.
+					</p>
+					<p>
+						See V8 issue <a href="https://bugs.chromium.org/p/v8/issues/detail?id=3496">3496</a>.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Algorithm</h2>
+				<pre><code class="hljs javascript" contenteditable>
+function asinh( x ) {
+    if ( x === 0 || !isFinite( x ) ) {
+        return x;
+    }
+    if ( x > 0 ) {
+        return Math.log( x + Math.sqrt( x*x + 1 ) );
+    }
+    return -Math.log( -x + Math.sqrt( x*x + 1 ) );
+}
+				</code></pre>
+
+				<aside class="notes">
+					<p>
+						If we examine the algorithm for Math.asinh, we see that the implementation consists of a single approximation for ALL input values. For small values, becomes log(1) which is 0. For large values, squaring x overflows.
+					</p>
+					<p>
+						For other ES2015/ES6 implementations in V8 prior to Node v7, see the <a href="https://github.com/nodejs/node/blob/v6.x/deps/v8/src/js/math.js">source</a>.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Algorithm</h2>
+				<pre><code class="hljs javascript" contenteditable>
+function asinh( x ) {
+    var sgn;
+    var xx;
+    var t;
+    if ( isnan( x ) || isinfinite( x ) ) {
+        return x;
+    }
+    if ( x < 0.0 ) {
+        x = -x;
+        sgn = true;
+    }
+    // Case: |x| < 2**-28
+    if ( x < NEAR_ZERO ) {
+        t = x;
+    }
+    // Case: |x| > 2**28
+    else if ( x > HUGE ) {
+        t = ln( x ) + LN2;
+    }
+    // Case: 2**28 > |x| > 2.0
+    else if ( x > 2.0 ) {
+        t = ln( 2.0*x + 1.0/(sqrt(x*x + 1.0) + x) );
+    }
+    // Case: 2.0 > |x| > 2**-28
+    else {
+        xx = x * x;
+        t = log1p( x + xx/(1.0 + sqrt(1.0 + xx)) );
+    }
+    return sgn ? -t : t;
+}
+				</code></pre>
+
+				<aside class="notes">
+					<p>
+						Compare to FDLIBM. In this algorithm, we do not treat all input values the same; instead, we apply different approximations based on magnitude, leading to more accurate results.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Math.exp</h2>
+				<pre><code class="hljs javascript" contenteditable>
+var y = Math.exp( 100.0 );
+// returns:  2.6881171418161485e+43
+// expected: 2.6881171418161356e+43
+				</code></pre>
+				<div class="row">
+					<ul class="column column-3">
+						<li>Node v0.12</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Node v4</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Node v6</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						Error of 26 ulp. For many values, Math.exp returns inaccurate results. Regression in Node v0.12. Fixed in Node v7.
+					</p>
+					<p>
+						See V8 issue <a href="https://bugs.chromium.org/p/v8/issues/detail?id=3468">3468</a>.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform"><a href="math_exp.html">Math.exp</a></h2>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Math.random</h2>
+				<pre><code class="hljs c" contenteditable>
+uint32_t state0 = 1;
+uint32_t state1 = 2;
+uint32_t mwc1616() {
+  state0 = 18030 * (state0 & 0xffff) + (state0 >> 16);
+  state1 = 30903 * (state1 & 0xffff) + (state1 >> 16);
+  return state0 << 16 + (state1 & 0xffff);
+}
+				</code></pre>
+
+				<div class="row">
+					<ul class="column column-3">
+						<li>Node v0.10</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Node v0.12</li>
+					</ul>
+					<ul class="column column-3">
+						<li>Node v4</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						MWC1616: multiply-with-carry combining two 16-bit parts.
+					</p>
+					<p>
+						Issues:
+						<ul>
+							<li>Outdated version of a low-quality PRNG.</li>
+							<li>Limited number of distinct values: 2**32.</li>
+							<li>The more significant bits are almost entirely dependent on state0</li>
+							<li>Vulnerable to a poorly chosen initial state.</li>
+							<li>Fails many of the statistical tests used to evaluate PRNGs</li>
+						</ul>
+					</p>
+					<p>
+						See also <a href="https://medium.com/@betable/tifu-by-using-math-random-f1c308c4fd9d#.qf3db54rs">Betable post</a> and <a href="http://v8project.blogspot.com/2015/12/theres-mathrandom-and-then-theres.html">V8 follow-up</a>.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Example</h2>
+				<div class="">
+					<pre><code class="hljs javascript" contenteditable>
+var ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+
+function randomString( length ) {
+    var randint;
+    var str;
+    var i;
+
+    str = '';
+    for ( i = 0; i < length; i++ ) {
+        randint = Math.floor( Math.random() * ALPHABET.length );
+        str += ALPHABET.substring( randint, randint+1 );
+    }
+    return str;
+}
+					</code></pre>
+
+					<div class="row">
+						<p class="column column-9">&nbsp;</p>
+						<p class="column column-3"><a href="https://medium.com/@betable/tifu-by-using-math-random-f1c308c4fd9d">Betable</a></p>
+					</div>
+				</div>
+
+				<aside class="notes">
+					<p>
+						Why does having a good PRNG matter? Consider this function which is designed to generate a random string. If you do the math, the function should be capable of generating 2**132 different 22 character strings, which means the possibility of a collision is approximately nil.
+					</p>
+					<p>
+						However, note how the random integer is generated. We floor the result of multiplying a pseudorandom number on the interval [0,1) by the length, thus throwing away the less significant bits.
+						Consequently, we end up relying on ONLY the top 6 bits of the PRNG output. In which case, the number of possible 22 character strings is less than 2**30, and the possibility of a collision is consequently much greater.
+					</p>
+					<p>
+						 Note, if you need a robust PRNG for generating pseudorandom integers, DO NOT do this. While common, this approach more often than not leads to biased results.
+					</p>
+					<p>
+						See <a href="http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript">Stack Overflow</a> for another example of how Math.random is used: generating UUIDs. Also, note that Math.random is not cryptographically secure; see <a href="https://blog.securityevaluators.com/hacking-the-javascript-lottery-80cc437e3b7f#.acvos6ihg">Hacking the JavaScript Lottery</a>.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<div class="row">
+					<div class="column column-12">
+						<a href="http://v8project.blogspot.com/2015/12/theres-mathrandom-and-then-theres.html"><img src="img/math_random.png" alt="Math.random" class="undecorated"></a>
+					</div>
+				</div>
+
+				<div class="row">
+					<p class="column column-9">&nbsp;</p>
+					<p class="column column-3"><a href="http://v8project.blogspot.com/2015/12/theres-mathrandom-and-then-theres.html">V8 blog</a></p>
+				</div>
+
+				<aside class="notes">
+					<p>
+						Just to re-emphasize the non-randomness of Math.random, here is the before and after when the V8 team switched from MWC1616 to xorshift. Note the considerable structure apparent in the before image compared to the after image. One of the hallmarks of a good PRNG is the appearance of randomness. The Math.random implementation in Node versions 4 and earlier clearly fails in this regard.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">JavaScript</h2>
+
+				<aside class="notes">
+					<p>
+						Now that we have discussed the particulars, let us turn our attention to how math in JavaScript is broken at the specification level.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<div class="row">
+					<ul class="column column-6">
+						<li class="fragment">Underspecification</li>
+						<li class="fragment">Cross-browser variability</li>
+						<li class="fragment">No single codebase</li>
+						<li class="fragment">Versioning</li>
+						<li class="fragment">Required shims</li>
+					</ul>
+					<ul class="column column-5">
+						<li class="fragment">Globals</li>
+						<li class="fragment">Testing</li>
+						<li class="fragment">No golden algorithms</li>
+						<li class="fragment">Timescale</li>
+						<li class="fragment">Trust</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						Let me count the ways...
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Community</h2>
+
+				<aside class="notes">
+					<p>
+						So how is the community stepping in to fill the void?
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Polyfills</h2>
+
+				<pre class="fragment"><code class="hljs javascript" contenteditable>
+var isFinite = require( 'is-finite' );
+
+module.exports = function asinh( x ) {
+    if ( x === 0 || !isFinite( x ) ) {
+        return x;
+    }
+    return x < 0 ? -asinh( -x ) : Math.log( x + Math.sqrt( x*x + 1 ) );
+}
+				</code></pre>
+				<aside class="notes">
+					<p>
+						Maybe you are thinking you can just polyfill all the problematic math functions. Wrong.
+					</p>
+					<p>
+						If this implementation looks familiar, you are correct. The implementation is the same as we saw earlier.
+					</p>
+					<p>
+						Unfortunately, many of the "polyfills" (and "ponyfills") are written by people who, quite frankly, have no business publishing such packages. Some of these polyfills are even written by "highly regarded" members of the community, giving the implementations an air of legitimacy, when, in fact, they are low quality implementations.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Libraries</h2>
+
+				<pre class="fragment"><code class="hljs javascript" contenteditable>
+function asinh( x ) {
+  return Math.log( Math.sqrt( x*x + 1 ) + x );
+}
+				</code></pre>
+				<aside class="notes">
+					<p>
+						Okay. So maybe you are thinking you can use a popular math library. Surely a highly popular dedicated math library will have good implementations! Wrong.
+					</p>
+					<p>
+						Look familiar? This implementation is lifted directly from a highly popular (nearly 4000 stars, >150 watching, >50 contributors) JavaScript math library.
+					</p>
+					<p>
+						Lesson: social indicators are poor proxies for evaluating numeric computing libraries. Most JavaScript math libraries that you can find on npm are low or very low quality. The only reliable way to evaluate code quality is to READ THE SOURCE! Do your research: always know what you are buying!
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">:(</h2>
+				<aside class="notes">
+					<p>
+						So if you cannot trust built-ins, polyfills, and most libraries, what are you to do?
+					</p>
+				</aside>
+			</section>
+
+			<section class="center" data-background-color="#000" data-transition="slide-in slide-out" data-transition-speed="slow">
+				<div class="row">
+					<div class="column column-12">
+						<a href="https://github.com/stdlib-js/stdlib"><img src="img/stdlib.png" alt="stdlib" class="undecorated"></a>
+					</div>
+				</div>
+
+				<aside class="notes">
+					<p>
+						stdlib is a project that myself and collaborators having been working on for the past year to provide robust, accurate, and performant numeric computing libraries in JavaScript.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform"><a href="https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/math/base/special">github.com/stdlib-js/stdlib</a></h2>
+
+				<aside class="notes">
+					<p>
+						See <a href="https://github.com/stdlib-js/stdlib/tree/develop/lib/node_modules/%40stdlib/math/base/special">repository</a> (in particular base special (asinh, riemann-zeta, ldexp), random, dist, utils).
+					</p>
+					<p>
+						Still very much a work in progress.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Opportunities</h2>
+
+				<aside class="notes">
+					<p>
+						So what can you do?
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Get Involved!</h2>
+
+				<aside class="notes">
+					<p>
+						Subscribe to the repo, follow on Twitter, and reach out.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Advocate</h2>
+
+				<div class="row">
+					<ul class="column column-6">
+						<li class="fragment">Int64/Uint64</li>
+						<li class="fragment">Int128/Uint128</li>
+						<li class="fragment">Typed Objects (complex)</li>
+						<li class="fragment">SIMD (long)</li>
+					</ul>
+					<ul class="column column-5">
+						<li class="fragment">Parallelism</li>
+						<li class="fragment">GPGPU</li>
+						<li class="fragment">BigFloat/BigInt</li>
+					</ul>
+				</div>
+
+				<aside class="notes">
+					<p>
+						Lobby the standards body. Advocate for language features which can only be implemented at the specification level.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Thank you!</h2>
+
+				<p>
+					<small><a href="https://github.com/kgryte"><i class="fa fa-github"></i> Athan Reines</a> / <a href="https://twitter.com/kgryte"><i class="fa fa-twitter"></i> @kgryte</a></small>
+				</p>
+
+				<p>
+					<small><a href="https://github.com/stdlib-js/stdlib">https://github.com/stdlib-js/stdlib</a></small>
+				</p>
+
+				<aside class="notes">
+					<p>
+						Thank you! Be sure to check out the <a href="http://sched.co/8H6x">"Real-time Machine Learning with Node.js"</a> by <a href="https://github.com/Planeshifter">Philipp Burckhardt</a> later today at 4:40PM.
+					</p>
+				</aside>
+			</section>
+
+			<section>
+				<!-- Add blank slide to separate main presentation from appendix -->
+				<aside class="notes">
+					Intentionally left blank.
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2>Appendix</h2>
+			</section>
+
+			<section class="center">
+				<!-- Intentionally many lines -->
+				<pre><code class="hljs javascript" contenteditable>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				</code></pre>
+				<aside class="notes">
+					Slide for code editing.
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2>What can be done at the specification level?</h2>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center">
+				<ul>
+					<li class="fragment">
+						<a href="https://developer.mozilla.org/en-US/docs/Mozilla/js-ctypes/js-ctypes_reference/Int64">Int64</a> (and bitwise ops)
+					</li>
+					<li class="fragment">
+						<a href="http://wiki.ecmascript.org/doku.php?id=harmony:typed_objects">Typed Objects</a>
+					</li>
+					<li class="fragment">
+						<a href="https://en.wikipedia.org/wiki/WebCL">WebCL</a>
+					</li>
+					<li class="fragment">
+						<a href="https://hacks.mozilla.org/2014/10/introducing-simd-js/">SIMD (long)</a>
+					</li>
+					<li class="fragment">
+						<a href="http://www.2ality.com/2013/12/paralleljs.html">Parallel Computing</a>
+					</li>
+					<li class="fragment">
+						<a href="http://www.2ality.com/2011/12/fake-operator-overloading.html">Operator Overloading</a>
+					</li>
+					<li class="fragment">
+						<a href="https://medium.com/javascript-scene/why-we-need-webassembly-an-interview-with-brendan-eich-7fb2a60b0723#.8cos1ynh1">Web Assembly</a>
+					</li>
+				</ul>
+
+				<aside class="notes">
+					<ul>
+						<li>Counting things, 64bit IDs which are not strings, money,...</li>
+						<li>Efficient serialization</li>
+						<li>GPGPU</li>
+						<li>Current support is for short SIMD, which is good for games and image processing, but less so for large vectors.</li>
+						<li>Lightweight threading model (similar to Go), rather than IPC</li>
+						<li>Allows for more compact syntax (MATLAB)</li>
+						<li>While most of the time, coding algos in JS should suffice, a compilation target for performance critical code will be awesome to have.</li>
+					</ul>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2>Integer Support</h2>
+				<ul>
+					<li>
+						<a href="https://esdiscuss.org/topic/efficient-64-bit-arithmetic#content-7">discussion</a>
+					</li>
+					<li>
+						<a href="https://gist.github.com/BrendanEich/4294d5c212a6d2254703">gist</a>
+					</li>
+					<li>
+						<a href="http://www.r-bloggers.com/r-in-a-64-bit-world/">Int64 in R</a>
+					</li>
+				</ul>
+			</section>
+
+			<section class="center">
+				<h2>Typed Objects</h2>
+				<ul>
+					<li>
+						<a href="https://github.com/dslomov/typed-objects-es7">spec</a>
+					</li>
+					<li>
+						<a href="https://github.com/nikomatsakis/typed-objects-explainer/">explainer</a>
+					</li>
+					<li>
+						<a href="http://dave.cheney.net/2014/06/07/five-things-that-make-go-fast">typed data structures in Go</a>
+					</li>
+				</ul>
+			</section>
+
+			<section class="center">
+				<h2>WebCL</h2>
+				<ul>
+					<li>
+						<a href="https://github.com/mikeseven/node-opencl">node-opencl</a>
+					</li>
+			</section>
+
+			<section class="center">
+				<h2>SIMD</h2>
+				<ul>
+					<li>
+						<a href="https://github.com/tc39/ecmascript_simd/blob/master/src/ecmascript_simd.js">polyfill</a>
+					</li>
+					<li>
+						<a href="https://01.org/blogs/tlcounts/2014/bringing-simd-javascript">Intel announcement</a>
+					</li>
+					<li>
+						<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SIMD">MDN</a>
+					</li>
+					<li>
+						<a href="https://docs.google.com/presentation/d/1MY9NHrHmL7ma7C8dyNXvmYNNGgVmmxXk8ZIiQtPlfH4/edit#slide=id.p19">presentation</a>
+					</li>
+				</ul>
+			</section>
+
+			<section class="center">
+				<h2>Parallel Computing</h2>
+				<ul>
+					<li>
+						<a href="https://en.wikipedia.org/wiki/Data_parallelism">Data parallelism</a>
+					</li>
+					<li>
+						<a href="https://en.wikipedia.org/wiki/Task_parallelism">Task parallelism</a>
+					</li>
+					<li>
+						<a href="http://smallcultfollowing.com/babysteps/blog/2012/01/09/parallel-javascript/">Scheduler</a>
+					</li>
+					<li>
+						<a href="http://preshing.com/20120612/an-introduction-to-lock-free-programming/">Lock-free programming</a>
+					</li>
+					<li>
+						<a href="https://github.com/lars-t-hansen/ecmascript_sharedmem/blob/master/TUTORIAL.md">Shared Memory Web Workers</a>
+					</li>
+				</ul>
+			</section>
+
+			<section class="center">
+				<h2>Operator Overloading</h2>
+				<ul>
+					<li>
+						<a href="https://github.com/kushal-likhi/operator-overloading-js">operator-overloading-js</a>
+					</li>
+					<li>
+						<a href="http://scratchdisk.com/posts/operator-overloading">paper.js</a>
+					</li>
+					<li>
+						<a href="https://github.com/paperjs/paper.js/blob/master/src/core/PaperScript.js">paper.js source</a>
+					</li>
+				</ul>
+			</section>
+
+			<section class="center">
+				<h2>The End</h2>
+			</section>
+
+		</div>
+
+	</div>
+
+	<script src="js/lib/reveal/head.min.js"></script>
+	<script src="js/lib/reveal/reveal.js"></script>
+	<script src="js/lib/reveal/init.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>
