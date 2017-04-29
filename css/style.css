@@ -54,3 +54,30 @@
 .reveal .no-text-transform {
 	text-transform: none!important;
 }
+
+header,
+footer {
+	z-index: 9999999999;
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: normal;
+	color: #222;
+}
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+footer {
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+}
+
+header a,
+footer a {
+	color: #222;
+	text-decoration: none;
+}
