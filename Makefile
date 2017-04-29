@@ -25,7 +25,7 @@ JSHINT_REPORTER ?= ./node_modules/jshint-stylish
 
 # FILES #
 
-SOURCES ?= js/*.js index.html
+SOURCES ?= js/*.js index.html package.json
 
 
 ###########
