@@ -3,7 +3,6 @@
 # VARIABLES #
 
 NPM ?= npm
-NODE_ENV ?= test
 
 KERNEL ?= $(shell uname -s)
 ifeq ($(KERNEL), Darwin)
@@ -24,12 +23,9 @@ JSHINT ?= ./node_modules/.bin/jshint
 JSHINT_REPORTER ?= ./node_modules/jshint-stylish
 
 
-
 # FILES #
 
 SOURCES ?= js/*.js index.html
-
-
 
 
 ###########
@@ -53,14 +49,12 @@ help:
 	@echo ''
 
 
-
 # NOTES #
 
 .PHONY: notes
 
 notes:
 	grep -Ern $(NOTES) $(SOURCES)
-
 
 
 # LINT #
@@ -75,7 +69,6 @@ lint-jshint: node_modules
 		./
 
 
-
 # NODE #
 
 .PHONY: install clean-node
@@ -85,7 +78,6 @@ install: package.json
 
 clean-node:
 	rm -rf node_modules
-
 
 
 # CLEAN #
