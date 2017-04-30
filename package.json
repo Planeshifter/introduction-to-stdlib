@@ -16,7 +16,7 @@
   "main": "",
   "repository": {
     "type": "git",
-    "url": "git://github.com/kgryte/talks-nodejs-interactive-2016.git"
+    "url": "git://github.com/TODO/TODO.git"
   },
   "keywords": [
 		"talk",
@@ -24,7 +24,7 @@
 		"presentation"
 	],
   "bugs": {
-    "url": "https://github.com/kgryte/talks-nodejs-interactive-2016/issues"
+    "url": "https://github.com/TODO/TODO/issues"
   },
   "dependencies": {},
   "devDependencies": {
