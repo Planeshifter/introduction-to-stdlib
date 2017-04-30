@@ -55,6 +55,10 @@
 	text-transform: none!important;
 }
 
+.fa-twitter {
+	color: #1DA1F2;
+}
+
 header,
 footer {
 	z-index: 9999999999;
