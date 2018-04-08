@@ -66,7 +66,7 @@
 		<div class="slides">
 			<section id="splash" class="center" data-transition="fade-out" data-background-image="img/ijs_splash_high_res.jpg" data-state="noicons">
 				<aside class="notes">
-
+					Hello everyone, my name is Philipp Burckhardt, but please don't expect too much from me: I am a statistician trained at Carnegie Mellon University and as the joke among statistician's goes, the difference between the extroverted and the introverted statistician is that the former looks at <e>your</e> shoes when talking to you.
 				</aside>
 			</section>
 
@@ -74,14 +74,14 @@
 				<h1>An introduction to stdlib.js</h1>
 
 				<aside class="notes">
-
+					Another complication: this talk is about fundamental technology,deeply rooted in programming fundamentals and mathematics. However, this may come handy to you in building your own applications, since the library I am going to talk about may abstract away painstaking routine tasks, allowing you and your team to focus on the important objectives.
 				</aside>
 			</section>
 
 			<section class="center" data-transition="fade-out" data-background-image="img/jungle_bkgd.jpg" data-background-position="bottom" data-state="noicons">
 				<h1 class="white">Why another library?</h1>
 				<aside class="notes">
-
+					Myself, when I am confronted with some new technology, my first question always is: Why another library? One has to have a very good reason for investing the time and effort to learn something new. Every dependency one relies on is a liability, especially with the risk of people abondoning their projects or otherwise deserting them.
 				</aside>
 			</section>
 
@@ -91,17 +91,20 @@
 				<br />
 				<label class="white">Source: <a class="white" href="http://www.modulecounts.com/">http://www.modulecounts.com/</a> (Erik DeBill)</label>
 				<aside class="notes">
-
+					But even if I was convinced that the library in question was a serious undertaking and not a weekend project, I would ask myself: Isn't there a comparable library already built, which might be even of better quality. As of today, the Node.js package manager offers around 700,000 packages for any imaginable task.
 				</aside>
 			</section>
 
 			<section class="center" data-state="icons">
-				<h2>Challenges</h2>
+				<h2>Downsides</h2>
 				<ul>
-					<li>package discovery</li>
-					<li>packages of varying quality</li>
-					<li>no consistent interfaces</li>
+					<li class="fragment">package discovery</li>
+					<li class="fragment">packages of varying quality</li>
+					<li class="fragment">no consistent interfaces</li>
 				</ul>
+				<aside class="notes">
+					In spite of this enormous supply, there are some serious disadvantages: First, you need to spend time to evaluate the available packages and inspect their quality as there are often multiple solutions for a given problem. Third, piecing together various utilities make cause headaches due to different interfaces that might not well play together.
+				</aside>
 			</section>
 
 			<section class="center" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/flowers.mp4" data-state="noicons">
@@ -133,6 +136,7 @@
 				</div>
 				<aside class="notes">
 					<p>
+						I imagine that you are already using some utility libraries to make your lifes easier, be it jQuery to interact with the DOM or something like underscore or lodash to streamline common tasks. If you are interested functiontal programming, you might have worked with ramda. Or maybe you eschew such libraries and just use the new language features that came with ES6.
 					</p>
 				</aside>
 			</section>
@@ -145,11 +149,20 @@
 					<li class="fragment">Desktop applications (electron)</li>
 					<li class="fragment">Internet of Things (IoT) (Cylon.js, iot.js, JerryScript, Johnny-Five)</li>
 				</ul>
+				<aside class="notes">
+					Due to the history of JS as a front-end language, it becomes more and more lonely the more abstract territory one enters. However, with the rise of Node.js, a lot of new applications for JS got into sight, for example server programming and command-line utilities. Popular noSQL databases use JavaScript as a scripting language in their clients, and with electron you can now build desktop applications that run on all operating systems. The Internet of Things opens new territory with smart devices, which integrate sensors and collect data that can be analyzed later on.
+				</aside>
 			</section>
 
 			<section class="center" data-state="icons">
 				<a href=""><img src="img/rhizome.png" alt="enlarge" class="undecorated"></a>
 				<h4 class="fragment">JavaScript is lacking a proper standard library</h4>
+				<aside class="notes">
+					Here is the point where our library comes into play. As we have seen, JavaScript offers a plethora of useful utility libraries, but in terms of fundamental building blocks, thoroughly tested and reliable mathematical routines, there are still many blank spots.
+					For example, my colleague Athan Reines and I were quite surprised when I found out that some of the standard Math object functions returned inaccurate results when tested against reference implementations in other languages. And while meanwhile most of these issues have been fixed, different browsers might return different results for the same function due to different algorithms.
+					Once again, this may be due to the history of JavaScript, where accuracy has often been traded for modest performance gains and the development of which can be characterized as mercurial.
+					For us, this demonstrated the need for a thoroughly tested, reliable, and well documented library that implements everything from the ground-up. That's why we built it and are calling it stdlib.
+				</aside>
 			</section>
 
 			<section id="banner" class="center" data-background-color="#000" data-transition="slide-in slide-out" data-transition-speed="slow" data-state="noicons">
@@ -158,9 +171,9 @@
 						<a href=""><img src="img/stdlib.png" alt="stdlib" class="undecorated"></a>
 					</div>
 				</div>
-
 				<aside class="notes">
-
+					Athan Reines and I have started development of stdlib in 2016. In the first year, we implemented around 800 functions. In 2017, almost a thousand additional functions made their way into stdlib and we are now on the brink of implementing many building blocks that will turn JavaScript into a language suitable for data science.
+					This field is likely to become more and more important for programmers. This gives me room for a question: Who of you has done any data analysis and data science so far? Raise your hand please. (make comment)
 				</aside>
 			</section>
 
@@ -169,12 +182,19 @@
 				<ul>
 					<li class="fragment">utilities you would expect from a standard library</li>
 					<li class="fragment">collection of robust, high performance libraries for mathematics, statistics, data processing, streams, and more</li>
-					<li class="fragment">as of April 2018, stdlib.js contains <b>1,800</b> functions</li>
+					<li class="fragment">as of April 2018, stdlib.js contains almost <b>2,000</b> functions</li>
 				</ul>
+
+				<aside class="notes">
+					What does stdlib contain? First, all the utilities you would expect from a standard library in another programming language. Second (...). As of today, stdlib contains almost 2,000 functions which include unit tests, benchmarks, and full documentation. For every line of source code, we write another 5-6 lines of test code and another 3-4 lines of benchmark/example code. Additionally, we have JSDoc annotations as well as README files for each function, which easily surpass the 80,000 lines of code of the library.
+				</aside>
 			</section>
 
 			<section class="center" data-state="icons">
 				<h2>Overview of stdlib.js</h2>
+				<aside class="notes">
+					Let me now show you what stdlib offers to you.
+				</aside>
 			</section>
 
 			<section class="center" data-state="icons">
@@ -266,53 +286,63 @@
 			<section class="center" data-state="icons">
 				<h3><a href="https://github.com/stdlib-js/stdlib">https://github.com/stdlib-js/stdlib</a></h3>
 				<h2>Current version: <br /> 0.33</h2>
+				<aside class="notes">
+					Since our library is still in development, we haven't reached v1.0 yet. You check out the GitHub repository at the above link,where you will also find a link to our Gitter channel where you raise any questions and concerns and we will be answering in due time.
+				</aside>
 			</section>
 
 			<section class="center" data-state="icons">
 				<h2>Get stdlib.js</h2>
-				<div class="left">
+				<div class="left fragment">
 					<h4>Option 1</h4>
 					<p>Install via <a href="https://www.npmjs.com/package/@stdlib/stdlib">npm</a></p>
 					<p>Bundle via Webpack or browserify</p>
 				</div>
-				<div class="right">
+				<div class="right fragment">
 					<h4>Option 2</h4>
 					<p><a href="https://github.com/stdlib-js/stdlib/tree/develop/dist">Distributable files</a> for use in browser environments<p>
 				</div>
+				<aside class="notes">
+					What are your options right now to use stdlib? Short of cloning the GitHub repository, you may install the library from npm for both usage in Node.js applications as well as in the browser. Bundling works with both browserify or Webpack. As an alternative, we offer pre-made bundles that you can easily insert into the header of your HTML page. Besides that, there is a utility tool to generate your own bundles that only contain the parts of stdlib that you need.
+				</aside>
 			</section>
 
 			<section class="center" data-state="icons">
 				<h1>stdlib.js in use</h1>
+				<aside class="notes">
+					Besides individual users, there are some projects already depending on stdlib.
+				</aside>
 			</section>
 
 			<section class="center" data-state="icons">
 				<h3 style="text-align: left;">Development of an e-learning platform for teaching data science built on <i>stdlib.js</i></h3>
 				<a href=""><img src="img/cmu_stats.png" alt="stdlib" class="undecorated"></a>
 				<aside class="notes">
-
+					At Carnegie Mellon University, we use stdlib in the Statistics & Data Science department to develop an e-learning platform for use in our courses.
 				</aside>
 			</section>
 
 			<section class="center no-icons" data-background-image="img/isle.gif" data-state="noicons">
 				<aside class="notes">
-
+					Here you you see a little widget demonstrating a statistical distribution. Since stdlib is JavaScript, you can carry out all computations in real-time inside the browser instead of a server.
 				</aside>
 			</section>
 
 			<section class="center" data-state="icons">
 				<a href=""><img src="img/stencila.png" alt="stdlib" class="undecorated"></a>
 				<aside class="notes">
-
+					Another user and sponsor of stdlib is stencila, who develop a office suite for reproducible research, which features interactive spreadsheets that use stdlib for their calculations.
 				</aside>
 			</section>
 
-			<section class="center"  data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/blocks.mp4" data-background-video="img/blocks.mp4" data-state="noicons">
-				<h2>"See things not as they are, but as they might be"</h2>
-				<h3>Felix Adler</h3>
-			</section>
-
-			<section class="center" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/blocks.mp4" data-state="noicons">
-				<h2>stdlib.js provides building blocks for the future</h2>
+			<section class="center" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/blocks.mp4" data-background-video="img/blocks.mp4" data-state="noicons">
+				<div class="fragment">
+					<h2>"See things not as they are, but as they might be"</h2>
+					<h3>Felix Adler</h3>
+				</div>
+				<aside class="notes">
+					However, this is not the end of the story. Rather, it is the beginning. Since we understand this undertaking as a long-term project, we have a firm eye on how JavaScript may evolve and how new applications that were previously off-limits may become viable.
+				</aside>
 			</section>
 
 			<section class="center" id="trends" data-state="icons">
@@ -322,13 +352,10 @@
 					<li class="fragment">Machine Learning, Predictive Analytics, and Artificial Intelligence in businesses</li>
 					<li class="fragment">Web as the premier medium to collaborate and to share results and graphs</li>
 				</ul>
-			</section>
-
-			<section class="center" data-state="icons">
-				<a href=""><img src="img/data_science_disciplines.png" alt="stdlib" class="undecorated"></a>
-
 				<aside class="notes">
-
+					So let's have a look at what trends we can expect. Real-time analytics promises to change business processes across the globe: Instead of exporting a static dataset and handing it over to an introverted statistician who might look at his own shoes, data will be increasingly analyzed where it is collected.
+					Machine learning and predictive analytics will gain importance in daily business processes, customer service and automation of common tasks.
+					The rise of cloud and online services has already demonstrated that the web is becoming crucial for collaborative work.
 				</aside>
 			</section>
 
@@ -360,8 +387,15 @@
 					</div>
 				</div>
 				<aside class="notes">
-					<p>
-					</p>
+					As of now, the main players for statistical and scientific computing are languages such as R, Python, MATLAB, or Mathematica. There are also newcomers such as Julia. Although JavaScript is clearly the underdog in this game, we place our bets that it will be a competitive alternative - history has proven time and time again that JavaScript outcompeted strong rivals like Perl, Flash, and VisualBasic.
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<a href=""><img src="img/data_science_disciplines.png" alt="stdlib" class="undecorated"></a>
+				<aside class="notes">
+					We see the shift towards the new field of data science as a great opportunity. This graph shows the different skills a future data scientist may need. I bet that most of you can relate to at least one of the skills listed here, and that you may have used JavaScript on this behalf, say by using d3.js or Plotly to generate interactive graphics.
+				</aside>
 			</section>
 
 			<section class="center" data-state="icons">
@@ -369,7 +403,7 @@
 				<a href=""><img src="img/job_postings.png" alt="stdlib" class="undecorated"></a>
 
 				<aside class="notes">
-
+					Here you can see a job adverts time series for data science where JS plays minor, but still significant role.
 				</aside>
 			</section>
 
@@ -384,16 +418,30 @@
 					</div>
 				</div>
 				<aside class="notes">
+					Among the overall developer population, JavaScript remains one of the most popular choices. In the latest Stack Overflow developer survey, it ranked first place as the most popular languages and also as the second most-wanted programming language, in spite of the bad reputation the language still has.
+				</aside>
+			</section>
 
+			<section class="center" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/blocks.mp4" data-state="noicons">
+				<h2>stdlib.js provides building blocks for the future</h2>
+				<aside class="notes">
+					On the basis of what we have already achieved, we are quite confident that our library will provide some building blocks to advance JavaScript in this domain and prepare it for the future
 				</aside>
 			</section>
 
 			<section class="center" data-state="icons">
 				<h2>ndarrays</h2>
+				<aside class="notes">
+
+				</aside>
 			</section>
 
 			<section class="center no-icons" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/robot.mp4" data-state="noicons">
 				<h1>Design Principles</h1>
+				<aside class="notes">
+					One of the fundamental questions that we have asked ourselves time and time again is: What does it need to create a good, reliable piece of technology that will resist the test of time?
+					Early on, we settled on a few core design principles that have shaped our development.
+				</aside>
 			</section>
 
 			<section class="center" data-state="icons">
@@ -405,7 +453,7 @@
 					</ul>
 				</div>
 				<aside class="notes">
-
+					First, every function in stdlib is its own package and can be used individually. This approach, which is inspired by the Unix philosophy, encourages a highly modular design that avoids lumping together functionality. This avoids unnecessary overhead, makes testing and reasoning about your code easier. All together, such an approach leads to clean, transparent, and simple user-facing APIs. It also allows the user to customize the library to his own needs.
 				</aside>
 			</section>
 
