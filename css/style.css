@@ -1,7 +1,12 @@
 
+body {
+	background-image: url("/img/ijs_slide_bkgd_high_res.png");
+	background-size: cover;
+	background-position: bottom;
+}
 
 .reveal a {
-	color: #222;
+	color: #116960;
 	text-decoration: none;
 }
 
@@ -51,12 +56,20 @@
 	text-transform: none!important;
 }
 
+.white {
+	color: white!important;
+}
+
 .reveal .no-text-transform {
 	text-transform: none!important;
 }
 
 .fa-twitter {
 	color: #1DA1F2;
+}
+
+.hidden {
+	display: none;
 }
 
 header,
@@ -76,12 +89,33 @@ header {
 
 footer {
 	position: fixed;
-	bottom: 40px;
+	top: 20px;
 	right: 40px;
+}
+
+.noicons footer {
+	display: hidden;
 }
 
 header a,
 footer a {
 	color: #000;
 	text-decoration: none;
+}
+
+.left {
+	left: -8.33%;
+	text-align: left;
+	float: left;
+	width: 50%;
+	z-index: -10;
+}
+
+.right {
+	left: 31.25%;
+	top: 75px;
+	float: right;
+	text-align: left;
+	z-index: -10;
+	width: 50%;
 }

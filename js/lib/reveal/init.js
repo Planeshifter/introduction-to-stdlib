@@ -65,7 +65,7 @@
 		'progress': false,
 
 		// Show the page number of the current slide?
-		'slideNumber': false,
+		'slideNumber': true,
 
 		// Store slide progression in the browser history?
 		'history': true,

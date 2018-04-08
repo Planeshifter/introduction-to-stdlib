@@ -57,22 +57,20 @@
 </head>
 
 <body>
-
 	<header>
-		<a href="https://github.com/stdlib-js/stdlib"><img src="img/long_logo_white.svg"></a>
-	</header>
 
+	</header>
 	<div class="reveal">
 
 		<!-- Any section element inside of this container is displayed as a slide -->
 		<div class="slides">
-			<section data-background="img/TODO">
+			<section id="splash" class="center" data-transition="fade-out" data-background-image="img/ijs_splash_high_res.jpg" data-state="noicons">
 				<aside class="notes">
 
 				</aside>
 			</section>
 
-			<section class="center" id="title-slide">
+			<section class="center" id="title-slide" data-state="noicons">
 				<h1>An introduction to stdlib.js</h1>
 
 				<aside class="notes">
@@ -80,20 +78,253 @@
 				</aside>
 			</section>
 
-			<section class="center" id="trends">
-				<h1>Trends</h1>
+			<section class="center" data-transition="fade-out" data-background-image="img/jungle_bkgd.jpg" data-background-position="bottom" data-state="noicons">
+				<h1 class="white">Why another library?</h1>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-background-image="img/jungle_bkgd.jpg" data-background-position="bottom" data-state="noicons">
+				<h4 class="white"><e>npm</e> is the most popular package manager of any programming language.</h4>
+				<a href=""><img src="img/npm_packages.png" alt="stdlib" class="undecorated"></a>
+				<br />
+				<label class="white">Source: <a class="white" href="http://www.modulecounts.com/">http://www.modulecounts.com/</a> (Erik DeBill)</label>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2>Challenges</h2>
 				<ul>
-					<li>Real-time analytics and stream processing</li>
-					<li>Increasing adoption of Machine Learning, Predictive Analytics, Artificial Intelligence in businesses</li>
+					<li>package discovery</li>
+					<li>packages of varying quality</li>
+					<li>no consistent interfaces</li>
 				</ul>
 			</section>
 
-			<section class="center">
-				<h2>About Me</h2>
-				<a href="https://github.com/Planeshifter"><i class="fa fa-github"></i> Philipp Burckhardt</a> | <a href="https://twitter.com/burckhap"><i class="fa fa-twitter"></i> @burckhap</a>
+			<section class="center" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/flowers.mp4" data-state="noicons">
+				<div class="fragment">
+					<div class="fragment row">
+						<p class="column column-2">&nbsp;</p>
+						<p class="column column-4">
+							jQuery
+						</p>
+						<p class="column column-4">
+							underscore
+						</p>
+					</div>
+					<div class="fragment row">
+						<p class="column column-2">&nbsp;</p>
+						<p class="column column-4">
+							lodash
+						</p>
+						<p class="column column-4">
+							ramda
+						</p>
+					</div>
+					<div class="fragment row">
+						<p class="column column-2">&nbsp;</p>
+						<p class="column column-4">
+							ES6
+						</p>
+					</div>
+				</div>
+				<aside class="notes">
+					<p>
+					</p>
+				</aside>
 			</section>
 
-			<section class="center">
+			<section class="center" data-state="icons">
+				<h3>Beyond the Front-End <br /> The Endless Frontier</h3>
+				<ul>
+					<li class="fragment">Server programming (Node.js)</li>
+					<li class="fragment">Databases (e.g., mongoDB client)</li>
+					<li class="fragment">Desktop applications (electron)</li>
+					<li class="fragment">Internet of Things (IoT) (Cylon.js, iot.js, JerryScript, Johnny-Five)</li>
+				</ul>
+			</section>
+
+			<section class="center" data-state="icons">
+				<a href=""><img src="img/rhizome.png" alt="enlarge" class="undecorated"></a>
+				<h4 class="fragment">JavaScript is lacking a proper standard library</h4>
+			</section>
+
+			<section id="banner" class="center" data-background-color="#000" data-transition="slide-in slide-out" data-transition-speed="slow" data-state="noicons">
+				<div class="row">
+					<div class="column column-12">
+						<a href=""><img src="img/stdlib.png" alt="stdlib" class="undecorated"></a>
+					</div>
+				</div>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2>stdlib.js in a nutshell</h2>
+				<ul>
+					<li class="fragment">utilities you would expect from a standard library</li>
+					<li class="fragment">collection of robust, high performance libraries for mathematics, statistics, data processing, streams, and more</li>
+					<li class="fragment">as of April 2018, stdlib.js contains <b>1,800</b> functions</li>
+				</ul>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2>Overview of stdlib.js</h2>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2>Special Functions</h2>
+
+				<a href=""><img src="img/special_functions.png" alt="stdlib" class="undecorated"></a>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h3>Probability Distributions</h3>
+
+				<a href=""><img src="img/probability_distributions.png" alt="stdlib" class="undecorated"></a>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h3>Seedable Pseudorandom Number Generators (PRNGs)</h3>
+
+				<a href=""><img src="img/probability_distributions.png" alt="stdlib" class="undecorated"></a>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h3>Utility functions</h3>
+
+				<a href=""><img src="img/utils.png" alt="stdlib" class="undecorated"></a>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h3>Assertion functions</h3>
+
+				<a href=""><img src="img/assertion.png" alt="stdlib" class="undecorated"></a>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section data-background-image="img/assertion_packages.gif" data-state="icons">
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h3>Datasets for testing and development</h3>
+
+				<a href=""><img src="img/datasets.png" alt="stdlib" class="undecorated"></a>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h3>A plot API</h3>
+
+				<a href=""><img src="img/plotting.png" alt="stdlib" class="undecorated"></a>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h3>BLAS libraries, with pure JavaScript fallbacks</h3>
+
+				<a href=""><img src="img/blas.png" alt="stdlib" class="undecorated"></a>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h3><a href="https://github.com/stdlib-js/stdlib">https://github.com/stdlib-js/stdlib</a></h3>
+				<h2>Current version: <br /> 0.33</h2>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2>Get stdlib.js</h2>
+				<div class="left">
+					<h4>Option 1</h4>
+					<p>Install via <a href="https://www.npmjs.com/package/@stdlib/stdlib">npm</a></p>
+					<p>Bundle via Webpack or browserify</p>
+				</div>
+				<div class="right">
+					<h4>Option 2</h4>
+					<p><a href="https://github.com/stdlib-js/stdlib/tree/develop/dist">Distributable files</a> for use in browser environments<p>
+				</div>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h1>stdlib.js in use</h1>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h3 style="text-align: left;">Development of an e-learning platform for teaching data science built on <i>stdlib.js</i></h3>
+				<a href=""><img src="img/cmu_stats.png" alt="stdlib" class="undecorated"></a>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center no-icons" data-background-image="img/isle.gif" data-state="noicons">
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<a href=""><img src="img/stencila.png" alt="stdlib" class="undecorated"></a>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center"  data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/blocks.mp4" data-background-video="img/blocks.mp4" data-state="noicons">
+				<h2>"See things not as they are, but as they might be"</h2>
+				<h3>Felix Adler</h3>
+			</section>
+
+			<section class="center" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/blocks.mp4" data-state="noicons">
+				<h2>stdlib.js provides building blocks for the future</h2>
+			</section>
+
+			<section class="center" id="trends" data-state="icons">
+				<h1>Trends</h1>
+				<ul>
+					<li class="fragment">Real-time analytics and stream processing</li>
+					<li class="fragment">Machine Learning, Predictive Analytics, and Artificial Intelligence in businesses</li>
+					<li class="fragment">Web as the premier medium to collaborate and to share results and graphs</li>
+				</ul>
+			</section>
+
+			<section class="center" data-state="icons">
 				<a href=""><img src="img/data_science_disciplines.png" alt="stdlib" class="undecorated"></a>
 
 				<aside class="notes">
@@ -101,7 +332,7 @@
 				</aside>
 			</section>
 
-			<section class="center" data-transition="none fade-out" data-transition-speed="fast">
+			<section class="center" data-transition="none fade-out" data-transition-speed="fast" data-state="icons">
 				<div class="fragment">
 					<div class="row">
 						<p class="column column-2">&nbsp;</p>
@@ -133,7 +364,7 @@
 					</p>
 			</section>
 
-			<section class="center">
+			<section class="center" data-state="icons">
 				<h2>Job Postings on <i>indeed.com</i></h2>
 				<a href=""><img src="img/job_postings.png" alt="stdlib" class="undecorated"></a>
 
@@ -142,7 +373,7 @@
 				</aside>
 			</section>
 
-			<section class="center">
+			<section class="center" data-state="icons">
 				<h2>Stack Overflow <br /> Developer Survey 2018</h2>
 				<div class="row">
 					<div class="column column-6">
@@ -157,149 +388,20 @@
 				</aside>
 			</section>
 
-			<section class="center">
-				<h2>Need: A library with building blocks for data science</h2>
+			<section class="center" data-state="icons">
+				<h2>ndarrays</h2>
 			</section>
 
-			<section class="center" data-background-color="#000" data-transition="slide-in slide-out" data-transition-speed="slow">
-				<div class="row">
-					<div class="column column-12">
-						<a href=""><img src="img/stdlib.png" alt="stdlib" class="undecorated"></a>
-					</div>
-				</div>
-
-				<aside class="notes">
-
-				</aside>
+			<section class="center no-icons" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/robot.mp4" data-state="noicons">
+				<h1>Design Principles</h1>
 			</section>
 
-			<section class="center">
-				<h2>Current version: <br /> 0.33</h2>
-			</section>
-
-			<section class="center">
-				<h2 style="text-align: left;">Usage</h2>
-				<h3 style="text-align: left;">Development of an e-learning platform for teaching data science built on <i>stdlib.js</i></h3>
-				<a href=""><img src="img/cmu_stats.png" alt="stdlib" class="undecorated"></a>
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center" data-background-image="img/isle.gif">
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center">
-					<h2 style="text-align: left;">Usage</h2>
-				<a href=""><img src="img/stencila.png" alt="stdlib" class="undecorated"></a>
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center">
-				<h2>Overview of stdlib.js</h2>
-			</section>
-
-			<section class="center">
-				<h2>Special Functions</h2>
-
-				<a href=""><img src="img/special_functions.png" alt="stdlib" class="undecorated"></a>
-
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center">
-				<h3>Probability Distributions</h3>
-
-				<a href=""><img src="img/probability_distributions.png" alt="stdlib" class="undecorated"></a>
-
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center">
-				<h3>Seedable Pseudorandom Number Generators (PRNGs)</h3>
-
-				<a href=""><img src="img/probability_distributions.png" alt="stdlib" class="undecorated"></a>
-
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center">
-				<h3>stdlib.js contains various utilities</h3>
-
-				<a href=""><img src="img/utils.png" alt="stdlib" class="undecorated"></a>
-
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center">
-				<h3>stdlib.js contains a comprehensive assertion library</h3>
-
-				<a href=""><img src="img/assertion.png" alt="stdlib" class="undecorated"></a>
-
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section data-background-image="img/assertion_packages.gif">
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center">
-				<h3>stdlib.js contains datasets for testing and development.</h3>
-
-				<a href=""><img src="img/datasets.png" alt="stdlib" class="undecorated"></a>
-
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center">
-				<h3>stdlib.js contains a plot API.</h3>
-
-				<a href=""><img src="img/plotting.png" alt="stdlib" class="undecorated"></a>
-
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center">
-				<h3>stdlib.js contains BLAS libraries, with pure JavaScript fallbacks.</h3>
-
-				<a href=""><img src="img/blas.png" alt="stdlib" class="undecorated"></a>
-
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center">
-
-			</section>
-
-			<section class="center">
+			<section class="center" data-state="icons">
 				<h2>stdlib.js is <i>completely decomposable</i></h2>
 				<div class="fragment">
 					<ul>
 						<li>each package can consumed and understood independenlty of the project</li>
-						<li>every package contains its own documentation, tests, benchmarks, and examples</li>
+						<li>every package maintains resource locality</li>
 					</ul>
 				</div>
 				<aside class="notes">
@@ -307,44 +409,327 @@
 				</aside>
 			</section>
 
-			<section class="center">
-				<h2>Probability Distributions</h2>
-
-				<div class="fragment row">
-					<ul class="column column-3">
-						<li>Special Function</li>
-						<li>item</li>
-						<li>item</li>
-						<li>item</li>
-						<li>item</li>
-						<li>item</li>
-						<li>item</li>
-					</ul>
-					<ul class="column column-3">
-					</ul>
-					<ul class="column column-3">
-					</ul>
-					<ul class="column column-2">
+			<section class="center" data-state="icons">
+				<h2>stdlib.js is <i>backwards compatible</i></h2>
+				<div class="fragment">
+					<ul>
+						<li>support of Node.js versions starting v0.10.x.</li>
+						<li>when bundled via Webpack or browserify, code will also run in legacy browsers</li>
 					</ul>
 				</div>
-
 				<aside class="notes">
 
 				</aside>
 			</section>
 
-			<section class="center">
-				<h2 class="no-text-transform">Heading</h2>
-				<pre><code class="hljs javascript" contenteditable>
-Code.
+			<section data-state="icons">
+				<h3>stdlib.js packages are <i>fully documented, tested, and benchmarked</i></h3>
+				<div class="left"><img src="img/package_structure.png" alt="package" class="undecorated" /></div>
+				<div class="right fragment">
+					<label>Package Contents:</label>
+					<ul>
+						<li>Examples</li>
+						<li>Benchmarks</li>
+						<li>Tests</li>
+						<li>Package and REPL documentation</li>
+					</ul>
+					<span>Each package will be independenlty released on npm once <b>v1.0</b> is reached</span>
+				</div>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="noicons" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/clocks.mp4">
+				<h1>Benchmarking</h1>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section data-state="icons">
+					<h3 class="no-text-transform">Custom micro-benchmarking framework</h3>
+					<pre><code class="hljs javascript">
+bench( 'Math.sin', function benchmark( b ) {
+	var x;
+	var i;
+	b.tic();
+	for ( i = 0; i < b.iterations; i++ ) {
+		x = Math.sin( Math.random() );
+		if ( x !== x ) {
+			b.fail( 'should not return NaN' );
+		}
+	}
+	b.toc();
+	if ( x !== x ) {
+		b.fail( 'should not return NaN' );
+	}
+	b.pass( 'success!' );
+	b.end();
+});
+					</code></pre>
+					<aside class="notes">
+
+					</aside>
+				</section>
+
+			<section data-state="icons">
+				<h3 class="no-text-transform">Structure of a benchmark</h3>
+				<pre><code class="hljs javascript">
+function benchmark( b ) {
+	var x;
+	var i;
+
+	// [1] Start timing:
+	b.tic();
+
+	// [2] Loop containing code to time...
+	for ( i = 0; i < b.iterations; i++ ) {
+		// [3] Code to time...
+
+		// [4] A conditional verifying results to prevent certain compiler optimizations:
+		if ( x !== x ) {
+			b.fail( 'something went wrong!' );
+		}
+	}
+	// [5] Stop timing:
+	b.toc();
+
+	// [6] Another conditional verifying results to prevent certain compiler optimizations:
+	if ( x !== x ) {
+		b.fail( 'something went wrong!' );
+	}
+	// [7] End the benchmark:
+	b.end();
+}
 				</code></pre>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section data-state="icons">
+				<h3 class="no-text-transform">Output</h3>
+				<p>Results are output in accordance with the <a href="http://testanything.org/tap-version-13-specification.html">Test Anything Protocol (TAP)</a> version 13.</p>
+				<div class="left fragment">
+				<pre><code>
+    ok 3 benchmark success!
+    # hypot
+      ---
+      iterations: 1000000
+      elapsed: 0.13120811
+      rate: 7621480.105155086
+      ...
+    ok 4 benchmark success!
+    # hypot
+      ---
+      iterations: 1000000
+      elapsed: 0.129308984
+      rate: 7733414.717727579
+      ...
+    ok 5 benchmark success!
+    # hypot
+      ---
+      iterations: 1000000
+      elapsed: 0.12404053
+      rate: 8061881.064197323
+      ...
+    ok 6 benchmark success!
+    #
+    1..6
+    # total 6
+    # pass  6
+    #
+    # ok
+				</code></pre>
+				</div>
+				<div class="right fragment">
+					<ul>
+						<li><b>iterations:</b> number of iterations</li>
+						<li><b>elapsed:</b> total elapsed time beginning with b.tic() ending with b.toc() (in seconds)</li>
+						<li><b>rate:</b> number of operations per second</li>
+					</ul>
+				</div>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section data-state="icons">
+				<h3 class="no-text-transform">Benchmarks for JS, Julia, Python, R, and C</h3>
+				<div class="left fragment">
+					<h4>stdlib.js</h4>
+					<pre><code>
+TAP version 13
+# @stdlib/random/base/randn
+	---
+	iterations: 1000000
+	elapsed: 0.098133603
+	rate: 10190189.389051577
+	...
+ok 1 benchmark finished
+# @stdlib/random/base/randn
+	---
+	iterations: 1000000
+	elapsed: 0.098849843
+	rate: 10116353.95313678
+	...
+ok 2 benchmark finished
+# @stdlib/random/base/randn
+	---
+	iterations: 1000000
+	elapsed: 0.099407804
+	rate: 10059572.38528275
+	...
+ok 3 benchmark finished
+#
+1..3
+# total 3
+# pass  3
+#
+# ok
+					</pre></code>
+				</div>
+				<div class="right fragment">
+					<h4>R</h4>
+					<pre><code>
+TAP version 13
+# r::randn
+	---
+	iterations: 1000000
+	elapsed: 1.786431643
+	rate: 559775.127091163
+	...
+ok 1 benchmark finished
+# r::randn
+	---
+	iterations: 1000000
+	elapsed: 1.746798779
+	rate: 572475.783714754
+	...
+ok 2 benchmark finished
+# r::randn
+	---
+	iterations: 1000000
+	elapsed: 1.773366445
+	rate: 563899.245313622
+	...
+ok 3 benchmark finished
+#
+1..3
+# total 3
+# pass  3
+#
+# ok
+					</pre></code>
+				</div>
+			</section>
+
+			<section class="center" data-state="noicons"  data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/testing.mp4">
+				<h1>Testing</h1>
 
 				<aside class="notes">
 
 				</aside>
 			</section>
 
-			<section class="center">
+			<section class="center" data-state="icons">
+				<h2 class="no-text-transform">Unit Tests via <e>tape</e></h2>
+				<pre><code class="hljs javascript" contenteditable>
+// TESTS //
+
+tape( 'main export is a function', function test( t ) {
+	t.ok( true, __filename );
+	t.equal( typeof abs, 'function', 'main export is a function' );
+	t.end();
+});
+
+tape( 'the function computes the absolute value of a number', function test( t ) {
+	t.equal( abs( -2.0 ), 2.0, 'negative number' );
+	t.equal( abs( 3.0 ), 3.0, 'positive number' );
+	t.equal( abs( 0.0 ), 0.0, 'zero' );
+	t.equal( abs( -PI ), PI, 'pi' );
+	t.end();
+});
+				</code></pre>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2 class="no-text-transform">Why tape?</h2>
+				<ul>
+					<li>No configuration, no globals, simple API</li>
+					<li>Supports standard TAP (Test Anything Protocol) output</li>
+				</ul>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2>Stats</h2>
+				<ul>
+					<li>
+						Code Coverage: <b>~94%</b>, LOC: <b>62,986/67,114</b>
+					</li>
+					<li>Continuous Integration Services:
+						<ul>
+							<li>Travis CI (Linux builds)</li>
+							<li>AppVeyor (Windows builds)</li>
+							<li>CircleCI</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section class="center" data-state="noicons" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/search.mp4">
+				<h1>Documentation</h1>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="noicons" >
+				<h2><a href="https://stdlib.io/">Web Interface</a></h2>
+				<img src="img/documentation.png" />
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="noicons" data-background-image="img/github_docs.gif" >
+				<h2 class="fragment">On GitHub</h2>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="noicons" data-background-image="img/repl_docs.gif" >
+				<h2 class="fragment" style="color: white;">In the REPL</h2>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2>Next Steps</h2>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2>How to contribute</h2>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
 				<h2 class="no-text-transform">Thank you!</h2>
 
 				<aside class="notes">
@@ -352,7 +737,7 @@ Code.
 				</aside>
 			</section>
 
-			<section class="center">
+			<section class="center" data-state="icons">
 				<div>
 					<a href="https://github.com/stdlib-js/stdlib"><img src="img/hex_sticker_black.svg" alt="stdlib" class="undecorated"></a>
 				</div>
@@ -370,18 +755,18 @@ Code.
 				</aside>
 			</section>
 
-			<section>
+			<section data-state="icons">
 				<!-- Add blank slide to separate main presentation from appendix -->
 				<aside class="notes">
 					Intentionally left blank.
 				</aside>
 			</section>
 
-			<section class="center">
+			<section class="center" data-state="icons">
 				<h2>Appendix</h2>
 			</section>
 
-			<section class="center">
+			<section class="center" data-state="icons">
 				<!-- Intentionally many lines -->
 				<pre><code class="hljs javascript" contenteditable>
 
@@ -395,11 +780,11 @@ Code.
 				</aside>
 			</section>
 
-			<section class="center">
+			<section class="center" data-state="icons">
 				<h2>Heading</h2>
 			</section>
 
-			<section class="center">
+			<section class="center" data-state="icons">
 				<h2>The End</h2>
 			</section>
 
@@ -408,7 +793,7 @@ Code.
 	</div>
 
 	<footer>
-		<a href="https://twitter.com/stdlibjs"><i class="fa fa-twitter"></i> @stdlibjs</a>
+		<a href="https://github.com/Planeshifter"><i class="fa fa-github"></i> Philipp Burckhardt</a> | <a href="https://twitter.com/burckhap"><i class="fa fa-twitter"></i> @burckhap</a>| <a href="https://twitter.com/stdlibjs"><i class="fa fa-twitter"></i> @stdlibjs</a>
 	</footer>
 
 	<script src="js/lib/reveal/head.min.js"></script>

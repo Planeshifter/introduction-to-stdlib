@@ -1,22 +1,22 @@
 {
-  "name": "talk-TODO",
+  "name": "introduction-to-stdlib ",
   "version": "0.0.0",
-  "description": "Talk for TODO.",
+  "description": "Talk for the International JavaScript Conference, iJS, London (2018).",
   "author": {
-    "name": "Athan Reines",
-    "email": "kgryte@gmail.com"
+    "name": "Philipp Burckhardt",
+    "email": "pburckhardt@outlook.com"
   },
   "contributors": [
     {
-      "name": "Athan Reines",
-      "email": "kgryte@gmail.com"
+      "name": "Philipp Burckhardt",
+      "email": "pburckhardt@outlook.com"
     }
   ],
   "scripts": {},
   "main": "",
   "repository": {
     "type": "git",
-    "url": "git://github.com/TODO/TODO.git"
+    "url": "https://github.com/Planeshifter/introduction-to-stdlib"
   },
   "keywords": [
 		"talk",
@@ -24,7 +24,7 @@
 		"presentation"
 	],
   "bugs": {
-    "url": "https://github.com/TODO/TODO/issues"
+    "url": "https://github.com/Planeshifter/introduction-to-stdlib/issues"
   },
   "dependencies": {},
   "devDependencies": {
