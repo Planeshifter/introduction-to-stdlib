@@ -57,35 +57,36 @@
 </head>
 
 <body>
-	<header>
+	<header class="hidden">
 
 	</header>
 	<div class="reveal">
 
 		<!-- Any section element inside of this container is displayed as a slide -->
 		<div class="slides">
-			<section id="splash" class="center" data-transition="fade-out" data-background-image="img/ijs_splash_high_res.jpg" data-state="noicons">
+			<section id="splash" class="center" data-transition="fade-out" data-background-image="img/ijs_splash_high_res.jpg" data-state="noicons" data-timing="20">
 				<aside class="notes">
 					Hello everyone, my name is Philipp Burckhardt, but please don't expect too much from me: I am a statistician trained at Carnegie Mellon University and as the joke among statistician's goes, the difference between the extroverted and the introverted statistician is that the former looks at <e>your</e> shoes when talking to you.
 				</aside>
 			</section>
 
-			<section class="center" id="title-slide" data-state="noicons">
+			<section class="center" id="title-slide" data-state="noicons" data-timing="15">
 				<h1>An introduction to stdlib.js</h1>
 
 				<aside class="notes">
-					Another complication: this talk is about fundamental technology,deeply rooted in programming fundamentals and mathematics. However, this may come handy to you in building your own applications, since the library I am going to talk about may abstract away painstaking routine tasks, allowing you and your team to focus on the important objectives.
+					Another complication: this talk is about fundamental technology,deeply rooted in programming fundamentals and mathematics. However, this may come handy to you in building your own applications, since the library I am going to talk about may abstract away painstaking routine tasks, allowing you and your team to focus on your main goals.
 				</aside>
 			</section>
 
-			<section class="center" data-transition="fade-out" data-background-image="img/jungle_bkgd.jpg" data-background-position="bottom" data-state="noicons">
+			<section class="center" data-transition="fade-out" data-background-image="img/jungle_bkgd.jpg" data-background-position="bottom" data-state="noicons"
+			data-timing="15">
 				<h1 class="white">Why another library?</h1>
 				<aside class="notes">
 					Myself, when I am confronted with some new technology, my first question always is: Why another library? One has to have a very good reason for investing the time and effort to learn something new. Every dependency one relies on is a liability, especially with the risk of people abondoning their projects or otherwise deserting them.
 				</aside>
 			</section>
 
-			<section class="center" data-background-image="img/jungle_bkgd.jpg" data-background-position="bottom" data-state="noicons">
+			<section class="center" data-background-image="img/jungle_bkgd.jpg" data-background-position="bottom" data-state="noicons" data-timing="15">
 				<h4 class="white"><e>npm</e> is the most popular package manager of any programming language.</h4>
 				<a href=""><img src="img/npm_packages.png" alt="stdlib" class="undecorated"></a>
 				<br />
@@ -95,7 +96,7 @@
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="15">
 				<h2>Downsides</h2>
 				<ul>
 					<li class="fragment">package discovery</li>
@@ -103,11 +104,11 @@
 					<li class="fragment">no consistent interfaces</li>
 				</ul>
 				<aside class="notes">
-					In spite of this enormous supply, there are some serious disadvantages: First, you need to spend time to evaluate the available packages and inspect their quality as there are often multiple solutions for a given problem. Third, piecing together various utilities make cause headaches due to different interfaces that might not well play together.
+					In spite of this enormous supply, there are some serious disadvantages: First, you need to spend time to evaluate the available packages and inspect their quality as there are often multiple solutions for a given problem. Second, piecing together various utilities may cause headaches due to different interfaces that might not well play together.
 				</aside>
 			</section>
 
-			<section class="center" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/flowers.mp4" data-state="noicons">
+			<section class="center" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/flowers.mp4" data-state="noicons" data-timing="20">
 				<div class="fragment">
 					<div class="fragment row">
 						<p class="column column-2">&nbsp;</p>
@@ -136,12 +137,12 @@
 				</div>
 				<aside class="notes">
 					<p>
-						I imagine that you are already using some utility libraries to make your lifes easier, be it jQuery to interact with the DOM or something like underscore or lodash to streamline common tasks. If you are interested functiontal programming, you might have worked with ramda. Or maybe you eschew such libraries and just use the new language features that came with ES6.
+						I imagine that you are already using some utility libraries to make your lifes easier, be it jQuery to interact with the DOM or something like underscore or lodash to streamline common tasks. If you are interested in functiontal programming, you might have worked with ramda. Or maybe you eschew such libraries and just use the new language features that came with ES6.
 					</p>
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="30">
 				<h3>Beyond the Front-End <br /> The Endless Frontier</h3>
 				<ul>
 					<li class="fragment">Server programming (Node.js)</li>
@@ -154,18 +155,18 @@
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="45">
 				<a href=""><img src="img/rhizome.png" alt="enlarge" class="undecorated"></a>
-				<h4 class="fragment">JavaScript is lacking a proper standard library</h4>
+				<h4 class="fragment">The JavaScript standard library is limited</h4>
 				<aside class="notes">
 					Here is the point where our library comes into play. As we have seen, JavaScript offers a plethora of useful utility libraries, but in terms of fundamental building blocks, thoroughly tested and reliable mathematical routines, there are still many blank spots.
-					For example, my colleague Athan Reines and I were quite surprised when I found out that some of the standard Math object functions returned inaccurate results when tested against reference implementations in other languages. And while meanwhile most of these issues have been fixed, different browsers might return different results for the same function due to different algorithms.
-					Once again, this may be due to the history of JavaScript, where accuracy has often been traded for modest performance gains and the development of which can be characterized as mercurial.
-					For us, this demonstrated the need for a thoroughly tested, reliable, and well documented library that implements everything from the ground-up. That's why we built it and are calling it stdlib.
+					For example, my colleague Athan Reines and I were quite surprised when we found out that some of the standard Math object functions returned inaccurate results when tested against reference implementations in other languages. And while meanwhile most of these issues have been fixed, different browsers might return different results for the same function due to different algorithms.
+					Once again, this may be due to the history of JavaScript, where accuracy has often been traded for modest performance gains and a development which can only be characterized as mercurial.
+					For us, this demonstrated the need for a thoroughly tested, reliable, and well documented library that implements everything from the ground-up. That's why we built this library and are calling it stdlib.
 				</aside>
 			</section>
 
-			<section id="banner" class="center" data-background-color="#000" data-transition="slide-in slide-out" data-transition-speed="slow" data-state="noicons">
+			<section id="banner" class="center" data-background-color="#000" data-transition="slide-in slide-out" data-transition-speed="slow" data-state="noicons" data-timing="60">
 				<div class="row">
 					<div class="column column-12">
 						<a href=""><img src="img/stdlib.png" alt="stdlib" class="undecorated"></a>
@@ -177,7 +178,7 @@
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="30">
 				<h2>stdlib.js in a nutshell</h2>
 				<ul>
 					<li class="fragment">utilities you would expect from a standard library</li>
@@ -190,7 +191,7 @@
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="5">
 				<h2>Overview of stdlib.js</h2>
 				<aside class="notes">
 					Let me now show you what stdlib offers to you.
@@ -840,7 +841,7 @@ tape( 'the function computes the absolute value of a number', function test( t )
 
 	</div>
 
-	<footer>
+	<footer class="hidden">
 		<a href="https://github.com/Planeshifter"><i class="fa fa-github"></i> Philipp Burckhardt</a> | <a href="https://twitter.com/burckhap"><i class="fa fa-twitter"></i> @burckhap</a>| <a href="https://twitter.com/stdlibjs"><i class="fa fa-twitter"></i> @stdlibjs</a>
 	</footer>
 
