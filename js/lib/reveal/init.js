@@ -64,8 +64,8 @@
 		// Show a presentation progress bar?
 		'progress': false,
 
-		// Set default timing of 2 minutes per slide
-		'defaultTiming': 120,
+		// Set default timing of 20 seconds per slide
+		'defaultTiming': 20,
 
 		// Show the page number of the current slide?
 		'slideNumber': true,
