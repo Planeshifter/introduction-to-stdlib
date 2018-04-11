@@ -184,6 +184,7 @@
 					<li class="fragment">utilities you would expect from a standard library</li>
 					<li class="fragment">collection of robust, high performance libraries for mathematics, statistics, data processing, streams, and more</li>
 					<li class="fragment">as of April 2018, stdlib contains more than <b>2,000</b> functions</li>
+					<li class="fragment">integrated REPL</li>
 				</ul>
 
 				<aside class="notes">
@@ -221,7 +222,23 @@
 			<section class="center" data-state="icons">
 				<h3>Seedable Pseudorandom Number Generators (PRNGs)</h3>
 
-				<a href=""><img src="img/probability_distributions.png" alt="stdlib" class="undecorated"></a>
+				<pre><code class="hljs javascript">
+var r = normal( 2.0, 5.0 );
+// draw from N(2,5) distribution
+
+r = normal( 2.0, -2.0 );
+// returns NaN
+
+var rand = normal.factory({ 'seed': 12345 });
+
+r = rand( 1.0, 2.0 );
+// returns ~0.175
+
+rand = normal.factory( 1.0, 2.0, { 'seed': 12345 });
+
+r = rand();
+// returns ~0.175
+				</code></pre>
 
 				<aside class="notes">
 
