@@ -79,7 +79,7 @@
 
 			<section class="center" data-transition="fade-out" data-background-image="img/jungle_bkgd.jpg" data-background-position="bottom" data-state="noicons"
 			data-timing="20">
-				<h1 class="white">Why another library?</h1>
+				<h1 class="white no-text-transform">Why another library?</h1>
 				<aside class="notes">
 					Myself, when I am confronted with some new technology, my first question always is: Why another library? One has to have a very good reason for investing the time and effort to learn something new. Every dependency one relies on is a liability, especially with the risk of people abondoning their projects or otherwise deserting them.
 				</aside>
@@ -142,7 +142,7 @@
 			</section>
 
 			<section class="center" data-state="icons" data-timing="35">
-				<h3>Beyond the Front-End <br /> The Endless Frontier</h3>
+				<h2 class="no-text-transform">Beyond the Front-End <br /> The Endless Frontier</h2>
 				<ul>
 					<li class="fragment">Server programming (Node.js)</li>
 					<li class="fragment">Databases (e.g., mongoDB client)</li>
@@ -179,7 +179,7 @@
 			</section>
 
 			<section class="center" data-state="icons" data-timing="40">
-				<h2>stdlib in a nutshell</h2>
+				<h2 class="no-text-transform">stdlib in a nutshell</h2>
 				<ul>
 					<li class="fragment">utilities you would expect from a standard library</li>
 					<li class="fragment">collection of robust, high performance libraries for mathematics, statistics, data processing, streams, and more</li>
@@ -220,7 +220,7 @@
 			</section>
 
 			<section class="center" data-state="icons">
-				<h3>Seedable Pseudorandom Number Generators (PRNGs)</h3>
+				<h3 class="no-text-transform">Seedable Pseudorandom Number Generators (PRNGs)</h3>
 
 				<pre><code class="hljs javascript">
 var r = normal( 2.0, 5.0 );
@@ -246,7 +246,7 @@ r = rand();
 			</section>
 
 			<section class="center" data-state="icons">
-				<h3>Utility functions</h3>
+				<h3>Utilities</h3>
 
 				<a href=""><img src="img/utils.png" alt="stdlib" class="undecorated"></a>
 
@@ -256,7 +256,7 @@ r = rand();
 			</section>
 
 			<section class="center" data-state="icons">
-				<h3>Assertion functions</h3>
+				<h3>Assertions</h3>
 
 				<a href=""><img src="img/assertion.png" alt="stdlib" class="undecorated"></a>
 
@@ -272,7 +272,7 @@ r = rand();
 			</section>
 
 			<section class="center" data-state="icons">
-				<h3>Datasets for testing and development</h3>
+				<h3>Datasets</h3>
 
 				<a href=""><img src="img/datasets.png" alt="stdlib" class="undecorated"></a>
 
@@ -282,7 +282,7 @@ r = rand();
 			</section>
 
 			<section class="center" data-state="icons">
-				<h3>A plot API</h3>
+				<h3>Plotting</h3>
 
 				<a href=""><img src="img/plotting.png" alt="stdlib" class="undecorated"></a>
 
@@ -292,7 +292,7 @@ r = rand();
 			</section>
 
 			<section class="center" data-state="icons">
-				<h3>BLAS libraries, with pure JavaScript fallbacks</h3>
+				<h3>BLAS</h3>
 
 				<a href=""><img src="img/blas.png" alt="stdlib" class="undecorated"></a>
 
@@ -326,7 +326,7 @@ r = rand();
 			</section>
 
 			<section class="center" data-state="icons" data-timing="5">
-				<h1>stdlib in use</h1>
+				<h1>Applications</h1>
 				<aside class="notes">
 					Besides individual users, there are some projects already depending on stdlib.
 				</aside>
@@ -417,7 +417,7 @@ r = rand();
 			</section>
 
 			<section class="center" data-state="icons" data-timing="10">
-				<h2>Job Postings on <i>indeed.com</i></h2>
+				<h2 class="no-text-transform">Job Postings on <i>indeed.com</i></h2>
 				<a href=""><img src="img/job_postings.png" alt="stdlib" class="undecorated"></a>
 
 				<aside class="notes">
@@ -426,7 +426,7 @@ r = rand();
 			</section>
 
 			<section class="center" data-state="icons" data-timing="20">
-				<h2>Stack Overflow <br /> Developer Survey 2018</h2>
+				<h2 class="no-text-transform">Stack Overflow <br /> Developer Survey 2018</h2>
 				<div class="row">
 					<div class="column column-6">
 						<a href=""><img src="img/most_popular.png" alt="stdlib" class="undecorated"></a>
@@ -480,7 +480,7 @@ var x = arr[ 2 ][ 0 ];
 			</section>
 
 			<section class="center" data-state="icons">
-				<h1>Solution: Strided Arrays</h1>
+				<h1>Solution: <br /> Strided Arrays</h1>
 			</section>
 
 			<section class="center" data-state="icons">
@@ -555,7 +555,12 @@ var x = arr[ 2 ][ 0 ];
 				<ul>
 					<li class="fragment">used by most scientific computing libraries, includng Numpy</li>
 					<li class="fragment">prior art in JS: <i>ndarray</i> package by Mikola Lysenko</li>
-					<li class="fragment"><i>stdlib ndarrays</i> are most comprehensive implementation supporting both C- and Fortran-style layouts</li>
+					<li class="fragment"><i>stdlib ndarrays</i> are
+						<ul>
+							<li>the most comprehensive implementation supporting both C- and Fortran-style layouts</li>
+							<li>include native implementations for greater performance in server environments</li>
+						</ul>
+					</li>
 				</ul>
 			</section>
 
@@ -581,7 +586,7 @@ arr.get( 2, 0 ) => buffer[ strides[0]*2 + strides[1]*1 + offset ] => 9
 			</section>
 
 			<section class="center" data-state="icons">
-				<h2>Example: Transposing a matrix</h2>
+				<h2 class="no-text-transform">Example: Transposing a matrix</h2>
 				<div class="column column-6">
 					<h4>X</h4>
 					<table>
@@ -676,7 +681,7 @@ arr.get( 2, 0 ) => buffer[ strides[0]*2 + strides[1]*1 + offset ] => 9
 			</section>
 
 			<section class="center" data-state="icons">
-				<h2>stdlib is <i>completely decomposable</i></h2>
+				<h2>Decomposability</h2>
 				<div class="fragment">
 					<ul>
 						<li>each package can consumed and understood independently of the project</li>
@@ -689,7 +694,7 @@ arr.get( 2, 0 ) => buffer[ strides[0]*2 + strides[1]*1 + offset ] => 9
 			</section>
 
 			<section class="center" data-state="icons" data-timing="20">
-				<h2>stdlib is <i>backwards compatible</i></h2>
+				<h2>Backward Compatibility</h2>
 				<div class="fragment">
 					<ul>
 						<li>support of Node.js versions starting v0.10.x.</li>
@@ -702,7 +707,7 @@ arr.get( 2, 0 ) => buffer[ strides[0]*2 + strides[1]*1 + offset ] => 9
 			</section>
 
 			<section data-state="icons" data-timing="20">
-				<h3>stdlib packages are <i>fully documented, tested, and benchmarked</i></h3>
+				<h3 class="no-text-transform">stdlib packages are <i>fully documented, tested, and benchmarked</i></h3>
 				<div class="left"><img src="img/package_structure.png" alt="package" class="undecorated" /></div>
 				<div class="right fragment">
 					<label>Package Contents:</label>
@@ -980,7 +985,7 @@ ok 3 benchmark finished
 			</section>
 
 			<section class="center" data-state="icons">
-				<h2>How to contribute</h2>
+				<h1 class="no-text-transform">How to contribute</h1>
 
 				<aside class="notes">
 
@@ -988,7 +993,7 @@ ok 3 benchmark finished
 			</section>
 
 			<section class="center" data-state="icons">
-				<h2 class="no-text-transform">Thank you!</h2>
+				<h1 class="no-text-transform">Thank you!</h1>
 
 				<aside class="notes">
 
