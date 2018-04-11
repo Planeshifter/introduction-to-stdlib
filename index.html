@@ -420,30 +420,28 @@ r = rand();
 			</section>
 
 			<section class="center" data-transition="none fade-out" data-transition-speed="fast" data-state="icons" data-timing="40">
-				<div class="fragment">
-					<div class="row">
-						<p class="column column-2">&nbsp;</p>
-						<p class="column column-4">
-							MATLAB
+				<div>
+					<div class="row fragment">
+						<p class="column column-6">
+							MATLAB (1984)
 						</p>
-						<p class="column column-4">
-							R
-						</p>
-					</div>
-					<div class="row">
-						<p class="column column-2">&nbsp;</p>
-						<p class="column column-4">
-							Python
-						</p>
-						<p class="column column-4">
-							Mathematica
+						<p class="column column-6" style="text-align: left">
+							Mathematica (1988)
 						</p>
 					</div>
-					<div class="row">
-						<p class="column column-2">&nbsp;</p>
-						<p class="column column-4">
-							Julia
+					<div class="row fragment">
+						<p class="column column-6">
+							Python (1991)
 						</p>
+						<p style="text-align: left" class="column column-6">
+							R (1993)
+						</p>
+					</div>
+					<div class="row fragment">
+						<p class="column column-6">
+							Julia (2012)
+						</p>
+						<p class="column column-6">&nbsp;</p>
 					</div>
 				</div>
 				<aside class="notes">
@@ -613,10 +611,10 @@ var x = arr[ 2 ][ 0 ];
 				<pre><code class="hljs javascript">
 // Create a new ndarray:
 var arr = ndarray({
-  'buffer': [ 2, 7, 0, 5, 4, 5, 9, 1, 3 ],
-  'order': 'row-major',
-  'shape': [ 3, 3 ],
-  'strides': [ 3, 1 ]
+  'buffer': [ 2, 7, 0, 5, 4, 5, 9, 1, 3 ], // underlying data
+  'order': 'row-major', // C-style layout
+  'shape': [ 3, 3 ], // 3 rows, 3 colums
+  'strides': [ 3, 1 ] // separation of contiguous elements in each dimension
 })
 var x = arr.get( 2, 0 );
 				</code></pre>
