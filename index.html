@@ -162,7 +162,7 @@
 					My colleague Athan Reines and I were quite surprised when we found out that some of the standard Math object functions returned inaccurate results when tested against reference implementations in other languages. And while meanwhile most of these issues have been fixed, different browsers might return different results for the same function due to different algorithms.
 					This may be due to the history of JavaScript, where accuracy has often been traded for modest performance gains and a development which can only be characterized as mercurial.
 					The situation is much worse for userland implementations for many mathematical routines: quite often, they are written by people who need them for their own project, but have no relevant expertise and are thus not aware what a proper implementation should offer.
-					For us, this demonstrated the need for a thoroughly tested, reliable, and well documented library that implements everything from the ground-up. That's why we built this library and are calling it stdlib.
+					For us, this demonstrated the need for a thoroughly tested, reliable, and well documented library that is rooted in science and implements everything from the ground-up. That's why we built this library and are calling it stdlib.
 				</aside>
 			</section>
 
@@ -599,9 +599,9 @@ var x = arr[ 2 ][ 0 ];
 				<ul>
 					<li class="fragment">used by most scientific computing libraries, including Numpy</li>
 					<li class="fragment">prior art in JS: <i>ndarray</i> package by Mikola Lysenko</li>
-					<li class="fragment"><i>stdlib ndarrays</i> are
+					<li class="fragment"><i>stdlib ndarrays</i>
 						<ul>
-							<li>the most comprehensive implementation supporting both C- and Fortran-style layouts</li>
+							<li>are the most comprehensive implementation supporting both C- and Fortran-style layouts</li>
 							<li>include native implementations for greater performance in server environments</li>
 						</ul>
 					</li>
