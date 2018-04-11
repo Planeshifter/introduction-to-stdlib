@@ -64,39 +64,38 @@
 
 		<!-- Any section element inside of this container is displayed as a slide -->
 		<div class="slides">
-			<section id="splash" class="center" data-transition="fade-out" data-background-image="img/ijs_splash_high_res.jpg" data-state="noicons" data-timing="20">
+			<section id="splash" class="center" data-transition="fade-out" data-background-image="img/ijs_splash_high_res.jpg" data-state="noicons" data-timing="25">
 				<aside class="notes">
-					Hello everyone, my name is Philipp Burckhardt, but please don't expect too much from me: I am a statistician trained at Carnegie Mellon University and as the joke among statistician's goes, the difference between the extroverted and the introverted statistician is that the former looks at <e>your</e> shoes when talking to you.
+					Hello everyone, my name is Philipp Burckhardt. I am a statistician trained at Carnegie Mellon University. Please don't expect too much from me: as the joke among statistician's goes, the difference between the extroverted and the introverted statistician is that the former looks at <e>your</e> shoes when talking to you.
 				</aside>
 			</section>
 
-			<section class="center" id="title-slide" data-state="noicons" data-timing="15">
+			<section class="center" id="title-slide" data-state="noicons" data-timing="25">
 				<h1>An introduction to stdlib</h1>
-
 				<aside class="notes">
-					Another complication: this talk is about fundamental technology,deeply rooted in programming fundamentals and mathematics. However, this may come handy to you in building your own applications, since the library I am going to talk about may abstract away painstaking routine tasks, allowing you and your team to focus on your main goals.
+					Another complication: this talk is about a piece of fundamental technology, which is deeply rooted in programming essentials, algorithms, and mathematics. However, since the library I am going to talk about may abstract away painstaking routine tasks,it may come handy to you in building your own applications and allow you and your team to focus on your main goals.
 				</aside>
 			</section>
 
 			<section class="center" data-transition="fade-out" data-background-image="img/jungle_bkgd.jpg" data-background-position="bottom" data-state="noicons"
-			data-timing="15">
+			data-timing="20">
 				<h1 class="white">Why another library?</h1>
 				<aside class="notes">
 					Myself, when I am confronted with some new technology, my first question always is: Why another library? One has to have a very good reason for investing the time and effort to learn something new. Every dependency one relies on is a liability, especially with the risk of people abondoning their projects or otherwise deserting them.
 				</aside>
 			</section>
 
-			<section class="center" data-background-image="img/jungle_bkgd.jpg" data-background-position="bottom" data-state="noicons" data-timing="15">
+			<section class="center" data-background-image="img/jungle_bkgd.jpg" data-background-position="bottom" data-state="noicons" data-timing="20">
 				<h4 class="white no-text-transform"><e>npm</e> is the most popular package manager of any programming language.</h4>
 				<a href=""><img src="img/npm_packages.png" alt="stdlib" class="undecorated"></a>
 				<br />
 				<label class="white">Source: <a class="white" href="http://www.modulecounts.com/">http://www.modulecounts.com/</a> (Erik DeBill)</label>
 				<aside class="notes">
-					But even if I was convinced that the library in question was a serious undertaking and not a weekend project, I would ask myself: Isn't there a comparable library already built, which might be even of better quality. As of today, the Node.js package manager offers around 700,000 packages for any imaginable task.
+					But even if I was convinced that the library in question was a serious undertaking and not a weekend project, I would ask myself: Isn't there a comparable library already built, which might have more users and be even of better quality. As of today, the Node.js package manager offers around 700,000 packages for any imaginable task.
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons" data-timing="15">
+			<section class="center" data-state="icons" data-timing="30">
 				<h2>Downsides</h2>
 				<ul>
 					<li class="fragment">package discovery</li>
@@ -104,11 +103,11 @@
 					<li class="fragment">no consistent interfaces</li>
 				</ul>
 				<aside class="notes">
-					In spite of this enormous supply, there are some serious disadvantages: First, you need to spend time to evaluate the available packages and inspect their quality as there are often multiple solutions for a given problem. Second, piecing together various utilities may cause headaches due to different interfaces that might not well play together.
+					In spite of this enormous supply, there are some serious disadvantages: First, you need to spend time to evaluate the available packages and inspect their quality as there are often multiple solutions for a given problem. Metrics such as the number of downloads or the number of stars on GitHub are unreliable indicators, so most of the time the only proper thing to do is to inspect the source code.Second, piecing together various utilities may cause headaches due to different interfaces that might not well play together.
 				</aside>
 			</section>
 
-			<section class="center" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/flowers.mp4" data-state="noicons" data-timing="20">
+			<section class="center" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/flowers.mp4" data-state="noicons" data-timing="25">
 				<div class="fragment">
 					<div class="fragment row">
 						<p class="column column-2">&nbsp;</p>
@@ -142,7 +141,7 @@
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons" data-timing="30">
+			<section class="center" data-state="icons" data-timing="35">
 				<h3>Beyond the Front-End <br /> The Endless Frontier</h3>
 				<ul>
 					<li class="fragment">Server programming (Node.js)</li>
@@ -155,13 +154,14 @@
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons" data-timing="45">
+			<section class="center" data-state="icons" data-timing="100">
 				<a href=""><img src="img/rhizome.png" alt="enlarge" class="undecorated"></a>
 				<h4 class="fragment">The JavaScript standard library is limited</h4>
 				<aside class="notes">
 					Here is the point where our library comes into play. As we have seen, JavaScript offers a plethora of useful utility libraries, but in terms of fundamental building blocks, thoroughly tested and reliable mathematical routines, there are still many blank spots.
-					For example, my colleague Athan Reines and I were quite surprised when we found out that some of the standard Math object functions returned inaccurate results when tested against reference implementations in other languages. And while meanwhile most of these issues have been fixed, different browsers might return different results for the same function due to different algorithms.
-					Once again, this may be due to the history of JavaScript, where accuracy has often been traded for modest performance gains and a development which can only be characterized as mercurial.
+					My colleague Athan Reines and I were quite surprised when we found out that some of the standard Math object functions returned inaccurate results when tested against reference implementations in other languages. And while meanwhile most of these issues have been fixed, different browsers might return different results for the same function due to different algorithms.
+					This may be due to the history of JavaScript, where accuracy has often been traded for modest performance gains and a development which can only be characterized as mercurial.
+					The situation is much worse for userland implementations for many mathematical routines: quite often, they are written by people who need them for their own project, but have no relevant expertise and are thus not aware what a proper implementation should offer.
 					For us, this demonstrated the need for a thoroughly tested, reliable, and well documented library that implements everything from the ground-up. That's why we built this library and are calling it stdlib.
 				</aside>
 			</section>
@@ -178,7 +178,7 @@
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons" data-timing="30">
+			<section class="center" data-state="icons" data-timing="40">
 				<h2>stdlib in a nutshell</h2>
 				<ul>
 					<li class="fragment">utilities you would expect from a standard library</li>
@@ -432,6 +432,219 @@
 
 			<section class="center" data-state="icons">
 				<h2>ndarrays</h2>
+				<ul>
+					<li class="fragment">multi-dimensional arrays are used in all of scientific computing</li>
+					<li class="fragment">natively, JavaScript does not have such a data type</li>
+				</ul>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h4>Common approach: Array-of-Arrays</h4>
+				<pre><code class="hljs javascript">
+var arr = [
+  [ 1, 2, 3 ],
+  [ 4, 5, 6 ],
+  [ 7, 8, 9 ]
+];
+var x = arr[ 2 ][ 0 ];
+				</code></pre>
+				<h4>Performance Issues</h4>
+				<ul>
+					<li>object references</li>
+					<li>element access</li>
+					<li>...</li>
+				</ul>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h1>Solution: Strided Arrays</h1>
+			</section>
+
+			<section class="center" data-state="icons">
+				<div class="column column-6">
+					<h4>3 by 3 Matrix <br />(ndarray shape: [3,3])</h4>
+					<table>
+						<tbody>
+							<tr>
+								<td>2</td>
+								<td>7</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>4</td>
+								<td>5</td>
+							</tr>
+							<tr>
+								<td>9</td>
+								<td>1</td>
+								<td>3</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="column column-6">
+					<h4>Underlying data buffer</h4>
+					<ul>
+						<li>
+							<b>C-style (row-major):</b>
+							<table>
+								<tbody>
+									<tr>
+										<td>2</td>
+										<td>7</td>
+										<td>0</td>
+										<td>5</td>
+										<td>4</td>
+										<td>5</td>
+										<td>9</td>
+										<td>1</td>
+										<td>3</td>
+									</tr>
+								</tbody>
+							</table>
+						</li>
+						<li>
+							<b>Fortran-style (column major):</b>
+							<table>
+								<tbody>
+									<tr>
+										<td>2</td>
+										<td>5</td>
+										<td>9</td>
+										<td>7</td>
+										<td>4</td>
+										<td>1</td>
+										<td>0</td>
+										<td>5</td>
+										<td>3</td>
+									</tr>
+								</tbody>
+							</table>
+						</li>
+						<li class="fragment">single contiguous block of memory</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2>ndarrays</h2>
+				<ul>
+					<li class="fragment">used by most scientific computing libraries, includng Numpy</li>
+					<li class="fragment">prior art in JS: <i>ndarray</i> package by Mikola Lysenko</li>
+					<li class="fragment"><i>stdlib ndarrays</i> are most comprehensive implementation supporting both C- and Fortran-style layouts</li>
+				</ul>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h3>Using ndarrays</h3>
+				<pre><code class="hljs javascript">
+// Create a new ndarray:
+var arr = ndarray({
+  'buffer': [ 2, 7, 0, 5, 4, 5, 9, 1, 3 ],
+  'order': 'row-major',
+  'shape': [ 3, 3 ],
+  'strides': [ 3, 1 ]
+})
+var x = arr.get( 2, 0 );
+				</code></pre>
+				<h3>Element Access</h3>
+				<pre style="width: 100%"><code>
+arr.get( 2, 0 ) => buffer[ strides[0]*2 + strides[1]*1 + offset ] => 9
+				</code></pre>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2>Example: Transposing a matrix</h2>
+				<div class="column column-6">
+					<h4>X</h4>
+					<table>
+						<tbody>
+							<tr>
+								<td>2</td>
+								<td>7</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>4</td>
+								<td>5</td>
+							</tr>
+							<tr>
+								<td>9</td>
+								<td>1</td>
+								<td>3</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="column column-6">
+					<h4>Xᵀ</h4>
+					<table>
+						<tbody>
+							<tr>
+								<td>2</td>
+								<td>5</td>
+								<td>9</td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>4</td>
+								<td>1</td>
+							</tr>
+							<tr>
+								<td>0</td>
+								<td>5</td>
+								<td>3</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<ul>
+					<li style="font-size: 32px">
+						Create view without copying data by using strides <b>[ 1, 3 ]</b> instead of <br /> <b>[ 3, 1 ]</b>
+					</li>
+				</ul>
+				<div class="column column-6">
+					<b style="font-size: 34px">arr.get( 2, 0 ) => buffer[ 6 ] => 9</b>
+				</div>
+				<div class="column column-6">
+					<b style="font-size: 34px">arr.get( 2, 0 ) => buffer[ 2 ] => 0</b>
+				</div>
+				<table>
+					<tbody>
+						<tr>
+							<td>2</td>
+							<td>7</td>
+							<td>0</td>
+							<td>5</td>
+							<td>4</td>
+							<td>5</td>
+							<td>9</td>
+							<td>1</td>
+							<td>3</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2>Next Steps</h2>
+				<ul>
+					<li class="fragment">Generic versions of stdlib function that work on ndarrays</li>
+					<li class="fragment">Utility functions for working with ndarrays</li>
+					<li class="fragment">Linear Algebra</li>
+					<li class="fragment">Useful for all of statictics and machine learning </li>
+				</ul>
 				<aside class="notes">
 
 				</aside>
@@ -489,7 +702,55 @@
 				</aside>
 			</section>
 
-			<section class="center" data-state="noicons" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/clocks.mp4">
+			<section class="center" data-state="no-icons blurred" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/testing.mp4">
+				<h1>Testing</h1>
+
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2 class="no-text-transform">Unit Tests via <e>tape</e></h2>
+				<pre><code class="hljs javascript" contenteditable>
+// TESTS //
+
+tape( 'main export is a function', function test( t ) {
+  t.ok( true, __filename );
+  t.equal( typeof abs, 'function', 'main export is a function' );
+  t.end();
+});
+
+tape( 'the function computes the absolute value of a number', function test( t ) {
+  t.equal( abs( -2.0 ), 2.0, 'negative number' );
+  t.equal( abs( 3.0 ), 3.0, 'positive number' );
+  t.equal( abs( 0.0 ), 0.0, 'zero' );
+  t.equal( abs( -PI ), PI, 'pi' );
+  t.end();
+});
+				</code></pre>
+				<aside class="notes">
+
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons">
+				<h2>Stats</h2>
+				<ul>
+					<li>
+						Code Coverage: <b>~94%</b>
+					</li>
+					<li>Continuous Integration Services:
+						<ul>
+							<li>Travis CI (Linux builds)</li>
+							<li>AppVeyor (Windows builds)</li>
+							<li>CircleCI</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+
+			<section class="center" data-state="dimmed noicons" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/clocks.mp4">
 				<h1>Benchmarking</h1>
 				<aside class="notes">
 
@@ -674,55 +935,7 @@ ok 3 benchmark finished
 				</div>
 			</section>
 
-			<section class="center" data-state="noicons"  data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/testing.mp4">
-				<h1>Testing</h1>
-
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center" data-state="icons">
-				<h2 class="no-text-transform">Unit Tests via <e>tape</e></h2>
-				<pre><code class="hljs javascript" contenteditable>
-// TESTS //
-
-tape( 'main export is a function', function test( t ) {
-  t.ok( true, __filename );
-  t.equal( typeof abs, 'function', 'main export is a function' );
-  t.end();
-});
-
-tape( 'the function computes the absolute value of a number', function test( t ) {
-  t.equal( abs( -2.0 ), 2.0, 'negative number' );
-  t.equal( abs( 3.0 ), 3.0, 'positive number' );
-  t.equal( abs( 0.0 ), 0.0, 'zero' );
-  t.equal( abs( -PI ), PI, 'pi' );
-  t.end();
-});
-				</code></pre>
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center" data-state="icons">
-				<h2>Stats</h2>
-				<ul>
-					<li>
-						Code Coverage: <b>~94%</b>
-					</li>
-					<li>Continuous Integration Services:
-						<ul>
-							<li>Travis CI (Linux builds)</li>
-							<li>AppVeyor (Windows builds)</li>
-							<li>CircleCI</li>
-						</ul>
-					</li>
-				</ul>
-			</section>
-
-			<section class="center" data-state="noicons" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/search.mp4">
+			<section class="center" data-state="dimmed noicons" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/search.mp4">
 				<h1>Documentation</h1>
 				<aside class="notes">
 
@@ -744,14 +957,6 @@ tape( 'the function computes the absolute value of a number', function test( t )
 			</section>
 
 			<section class="center" data-state="noicons" data-background-image="img/repl_docs.gif" >
-				<aside class="notes">
-
-				</aside>
-			</section>
-
-			<section class="center" data-state="icons">
-				<h2>Next Steps</h2>
-
 				<aside class="notes">
 
 				</aside>
@@ -802,17 +1007,129 @@ tape( 'the function computes the absolute value of a number', function test( t )
 				<h2>Appendix</h2>
 			</section>
 
-			<section class="center" data-state="icons">
-				<!-- Intentionally many lines -->
-				<pre><code class="hljs javascript" contenteditable>
+			<section class="center" style="font-size: 30px">
+				<h4>JavaScript Math Built-Ins</h4>
+				<div class="fragment row">
+					<ul class="column column-3">
+						<li>acos</li>
+						<li>asin</li>
+						<li>atan</li>
+						<li>atan2</li>
+						<li>cos</li>
+						<li>sin</li>
+						<li>tan</li>
+						<li>acosh</li>
+						<li>asinh</li>
+						<li>atanh</li>
+						<li>cosh</li>
+						<li>sinh</li>
+						<li>tanh</li>
+					</ul>
+					<ul class="column column-3">
+						<li>abs</li>
+						<li>exp</li>
+						<li>log (ln)</li>
+						<li>pow</li>
+						<li>sqrt</li>
+						<li>sign</li>
+						<li>cbrt</li>
+						<li>expm1</li>
+						<li>log10</li>
+						<li>log1p</li>
+						<li>log2</li>
+					</ul>
+					<ul class="column column-3">
+						<li>ceil</li>
+						<li>floor</li>
+						<li>round</li>
+						<li>fround</li>
+						<li>trunc</li>
+					</ul>
+					<ul class="column column-2">
+						<li>max</li>
+						<li>min</li>
+						<li>random</li>
+						<li>hypot</li>
+						<li>clz32</li>
+						<li>imul</li>
+					</ul>
+				</div>
 
-
-
-
-
-				</code></pre>
 				<aside class="notes">
-					Slide for code editing.
+					<p>
+						In ES5, the standard math library consisted of 18 functions and 8 constants. These functions can be categorized as trigonometric, other special functions, including rounding, and miscellaneous, including a PRNG.
+					</p>
+					<p>
+						ES2015/ES6 added 17 more functions to the standard math library. Again, these functions are broken down into trigonometric, other special functions, including rounding, and miscellaneous.
+					</p>
+					<p>
+						The addition of these 17 functions means the JavaScript standard math library has 35 functions.
+					</p>
+					<p>
+						In short, the JavaScript standard math library is quite small, especially when compared to other languages and dedicated numeric computing environments.
+					</p>
+					<p>
+						In comparison, the Golang standard math library has 54 functions (JS has 35), 8+ PRNGs, as well as support for 64-bit and 128-bit complex numbers. Notably, Golang has equivalents for most C/C++ standard math library functions.
+					</p>
+					<p>
+						Besides being small, the JavaScript standard math library has other problems.
+					</p>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h4>Issues with JavaScript Math built-ins</h4>
+				<ul>
+					<li class="fragment">No standard algorithms</li>
+					<li class="fragment">No minimum precision</li>
+ 					<li class="fragment">Portability</li>
+ 					<li class="fragment">No common codebase</li>
+					<li class="fragment">Slow pace of innovation</li>
+ 					<li class="fragment">Bugs</li>
+				</ul>
+				<aside class="notes">
+					<ul>
+						<li>
+							ECMA-262 does not specify particular math algorithms (only recommends); hence implementors are free to choose algos according to speed/precision trade-offs.
+						</li>
+						<li>
+							ECMA-262 does not require a minimum precision; hence, no guarantee that a given JavaScript environment has a precise implementation.
+						</li>
+						<li>
+							Portability is non-existent for numeric computing applications due to potential cross-browser variability and potential variability from one browser version to the next.
+						</li>
+						<li>
+							No common codebase, so resolving issues takes considerable time and effort, especially when different vendors use varying implementations in varying languages with varying organization and structure.
+						</li>
+						<li>
+							Specification-level changes require cross-browser vendor consensus, causing the pace of innovation at the standards level to be slow (e.g., U/Int64 support has been on the table, off the table for more than a decade, and is most recently on the table as part of a BigInt proposal).
+						</li>
+						<li>
+							Bugs are common (cue bug or two; e.g., `pow`).
+						</li>
+					</ul>
+				</aside>
+			</section>
+
+			<section class="center">
+				<h2 class="no-text-transform">Math.pow</h2>
+
+				<pre><code class="hljs javascript" contenteditable>
+var x = Math.pow( 10, 308 );
+// returns:  1.0000000000000006e+308
+// expected: 1.0e+308
+				</code></pre>
+
+				<aside class="notes">
+					<p>
+						Node v0.10+.
+					</p>
+					<p>
+						Admittedly, the error is only 3 ulp; however, those 3 ulp matter. Inaccurate results for integer inputs a) is counterintuitive because 10**308 is representable as a double (so not the same counterintuitive as 0.1 + 0.2 != 0.3) and b) ends up causing downstream accuracy issues for higher order mathematical functions as we discovered while writing such functions.
+					</p>
+					<p>
+						See V8 issues <a href="https://bugs.chromium.org/p/v8/issues/detail?id=3599">3599</a> and <a href="https://bugs.chromium.org/p/v8/issues/detail?id=5157">5157</a>.
+					</p>
 				</aside>
 			</section>
 
