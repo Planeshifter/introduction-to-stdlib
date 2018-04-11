@@ -208,7 +208,8 @@
 					<ul>
 						<li>more than 150 special functions</li>
 						<li>ported from or tested against reference implementations</li>
-						<li>functions needed for statistics and machine learning, functions to improve accuracy for special input ranges</li>
+						<li>functions needed for statistics and machine learning, functions to improve accuracy of certain calculations</li>
+						<li>source code fully documented with references to the relevant literature / sources</li>
 					</ul>
 				</aside>
 			</section>
@@ -381,26 +382,26 @@ r = rand();
 				</aside>
 			</section>
 
-			<section class="center no-icons" data-background-image="img/isle.gif" data-state="noicons" data-timing="15">
+			<section class="center no-icons" data-background-image="img/isle.gif" data-state="noicons" data-timing="20">
 				<aside class="notes">
 					Here you you see a little widget demonstrating a statistical distribution. Since stdlib is JavaScript, you can carry out all computations in real-time inside the browser instead of a server.
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons" data-timing="15">
+			<section class="center" data-state="icons" data-timing="20">
 				<a href=""><img src="img/stencila.png" alt="stdlib" class="undecorated"></a>
 				<aside class="notes">
 					Another user and sponsor of stdlib is stencila, who develop an office suite for reproducible research, which features interactive spreadsheets that use stdlib for their calculations.
 				</aside>
 			</section>
 
-			<section class="center" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/blocks.mp4" data-background-video="img/blocks.mp4" data-state="noicons" data-timing="20">
+			<section class="center" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/blocks.mp4" data-background-video="img/blocks.mp4" data-state="noicons" data-timing="45">
 				<div class="fragment">
 					<h2>"See things not as they are, but as they might be"</h2>
 					<h3>Felix Adler</h3>
 				</div>
 				<aside class="notes">
-					However, this is not the end of the story. Rather, it is the beginning. Since we understand this undertaking as a long-term project, we have a firm eye on how JavaScript may evolve and how new applications that were previously off-limits may become viable.
+					However, this is not the end of the story. Rather, it is the beginning. Since we understand this undertaking as a long-term project, we have a firm eye on how JavaScript may evolve and how new applications that were previously off-limits may become viable. Mindset embodied in the quote of philosopher Felix Adler: "See things not as they are, but as they might be"
 				</aside>
 			</section>
 
@@ -488,7 +489,7 @@ r = rand();
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="20">
 				<h2>ndarrays</h2>
 				<ul>
 					<li class="fragment">multi-dimensional arrays are used in all of scientific computing</li>
@@ -499,7 +500,7 @@ r = rand();
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="45">
 				<h4>Common approach: Array-of-Arrays</h4>
 				<pre><code class="hljs javascript">
 var arr = [
@@ -524,7 +525,7 @@ var x = arr[ 2 ][ 0 ];
 				<h1>Solution: <br /> Strided Arrays</h1>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="60">
 				<div class="column column-6">
 					<h4>3 by 3 Matrix <br />(ndarray shape: [3,3])</h4>
 					<table>
@@ -591,7 +592,7 @@ var x = arr[ 2 ][ 0 ];
 				</div>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="60">
 				<h2>ndarrays</h2>
 				<ul>
 					<li class="fragment">used by most scientific computing libraries, includng Numpy</li>
@@ -605,7 +606,7 @@ var x = arr[ 2 ][ 0 ];
 				</ul>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="60">
 				<h3>Using ndarrays</h3>
 				<pre><code class="hljs javascript">
 // Create a new ndarray:
@@ -626,7 +627,7 @@ arr.get( 2, 0 ) => buffer[ strides[0]*2 + strides[1]*1 + offset ] => 9
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="60">
 				<h2 class="no-text-transform">Example: Transposing a matrix</h2>
 				<div class="column column-6">
 					<h4>X</h4>
@@ -700,7 +701,7 @@ arr.get( 2, 0 ) => buffer[ strides[0]*2 + strides[1]*1 + offset ] => 9
 				</table>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="45">
 				<h2>Next Steps</h2>
 				<ul>
 					<li class="fragment">Generic versions of stdlib function that work on ndarrays</li>
@@ -721,7 +722,7 @@ arr.get( 2, 0 ) => buffer[ strides[0]*2 + strides[1]*1 + offset ] => 9
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="40">
 				<h2>Decomposability</h2>
 				<div class="fragment">
 					<ul>
@@ -734,7 +735,7 @@ arr.get( 2, 0 ) => buffer[ strides[0]*2 + strides[1]*1 + offset ] => 9
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons" data-timing="20">
+			<section class="center" data-state="icons" data-timing="40">
 				<h2>Backward Compatibility</h2>
 				<div class="fragment">
 					<ul>
@@ -773,9 +774,9 @@ arr.get( 2, 0 ) => buffer[ strides[0]*2 + strides[1]*1 + offset ] => 9
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="45">
 				<h2 class="no-text-transform">Unit Tests via <e>tape</e></h2>
-				<pre><code class="hljs javascript" contenteditable>
+				<pre><code class="hljs javascript">
 // TESTS //
 
 tape( 'main export is a function', function test( t ) {
@@ -797,7 +798,7 @@ tape( 'the function computes the absolute value of a number', function test( t )
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="60">
 				<h2>Stats</h2>
 				<ul>
 					<li>
@@ -820,7 +821,7 @@ tape( 'the function computes the absolute value of a number', function test( t )
 				</aside>
 			</section>
 
-			<section data-state="icons">
+			<section data-state="icons" data-timing="45">
 					<h3 class="no-text-transform">Custom micro-benchmarking framework</h3>
 					<pre><code class="hljs javascript">
 bench( 'Math.sin', function benchmark( b ) {
@@ -846,7 +847,7 @@ bench( 'Math.sin', function benchmark( b ) {
 					</aside>
 				</section>
 
-			<section data-state="icons">
+			<section data-state="icons" data-timing="60">
 				<h3 class="no-text-transform">Structure of a benchmark</h3>
 				<pre><code class="hljs javascript">
 function benchmark( b ) {
@@ -881,7 +882,7 @@ function benchmark( b ) {
 				</aside>
 			</section>
 
-			<section data-state="icons">
+			<section data-state="icons" data-timing="60">
 				<h3 class="no-text-transform">Output</h3>
 				<p>Results are output in accordance with the <a href="http://testanything.org/tap-version-13-specification.html">Test Anything Protocol (TAP)</a> version 13.</p>
 				<div class="left fragment">
@@ -928,7 +929,7 @@ function benchmark( b ) {
 				</aside>
 			</section>
 
-			<section data-state="icons">
+			<section data-state="icons" data-timing="45">
 				<h3 class="no-text-transform">Benchmarks for JS, Julia, Python, R, and C</h3>
 				<div class="left fragment">
 					<h4>stdlib</h4>
@@ -998,14 +999,14 @@ ok 3 benchmark finished
 				</div>
 			</section>
 
-			<section class="center" data-state="dimmed noicons" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/search.mp4">
+			<section class="center" data-state="dimmed noicons" data-timing="20" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/search.mp4">
 				<h1>Documentation</h1>
 				<aside class="notes">
 
 				</aside>
 			</section>
 
-			<section class="center" data-state="noicons" >
+			<section class="center" data-state="noicons" data-timing="20">
 				<h2><a href="https://stdlib.io/">Web Interface</a></h2>
 				<img src="img/documentation.png" />
 				<aside class="notes">
@@ -1013,31 +1014,33 @@ ok 3 benchmark finished
 				</aside>
 			</section>
 
-			<section class="center" data-state="noicons" data-background-image="img/github_docs.png" >
+			<section class="center" data-state="noicons" data-timing="20" data-background-image="img/github_docs.png" >
 				<aside class="notes">
 
 				</aside>
 			</section>
 
-			<section class="center" data-state="noicons" data-background-image="img/repl_docs.gif" >
+			<section class="center" data-state="noicons" data-timing="20" data-background-image="img/repl_docs.gif" >
 				<aside class="notes">
 
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="45">
 				<h1 class="no-text-transform">How to contribute</h1>
 
 				<aside class="notes">
-
+						<ul>
+							<li>much to work on</li>
+							<li>guides for getting started and contributing</li>
+							<li>eight contributors so far</li>
+						</ul>
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="20">
 				<h1 class="no-text-transform">Thank you!</h1>
-
 				<aside class="notes">
-
 				</aside>
 			</section>
 
@@ -1046,16 +1049,22 @@ ok 3 benchmark finished
 					<a href="https://github.com/stdlib-js/stdlib"><img src="img/hex_sticker_black.svg" alt="stdlib" class="undecorated"></a>
 				</div>
 
-				<p>
-					<small><a href="https://www.stdlib.io"><i class="fa fa-link"></i> https://www.stdlib.io</a></small>
+				<p style="text-align: left">
+					<a href="https://www.stdlib.io"><i class="fa fa-link"></i> https://www.stdlib.io</a>
 					<br>
-					<small><a href="https://github.com/stdlib-js/stdlib"><i class="fa fa-github"></i> https://github.com/stdlib-js/stdlib</a></small>
+					<a href="https://github.com/stdlib-js/stdlib"><i class="fa fa-github"></i> https://github.com/stdlib-js/stdlib</a>
 					<br>
-					<small><a href="https://www.patreon.com/athan"><i class="fa fa-bitcoin"></i> https://www.patreon.com/athan</a></small>
+					<a href="https://www.patreon.com/athan"><i class="fa fa-bitcoin"></i> https://www.patreon.com/athan</a>
 				</p>
 
 				<aside class="notes">
 
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons" data-timing="20">
+				<h1 class="no-text-transform">Questions?</h1>
+				<aside class="notes">
 				</aside>
 			</section>
 
@@ -1071,7 +1080,7 @@ ok 3 benchmark finished
 			</section>
 
 			<section class="center" style="font-size: 30px">
-				<h4>JavaScript Math Built-Ins</h4>
+				<h4 class="no-text-transform">JavaScript Math Built-Ins</h4>
 				<div class="fragment row">
 					<ul class="column column-3">
 						<li>acos</li>
@@ -1141,7 +1150,7 @@ ok 3 benchmark finished
 			</section>
 
 			<section class="center">
-				<h4>Issues with JavaScript Math built-ins</h4>
+				<h4 class="no-text-transform">Issues with JavaScript Math built-ins</h4>
 				<ul>
 					<li class="fragment">No standard algorithms</li>
 					<li class="fragment">No minimum precision</li>
