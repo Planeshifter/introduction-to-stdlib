@@ -501,7 +501,7 @@ r = rand();
 			</section>
 
 			<section class="center" data-state="icons" data-timing="45">
-				<h4>Common approach: Array-of-Arrays</h4>
+				<h4 class="no-text-transform" style="text-align: left">Common approach: Array-of-Arrays</h4>
 				<pre><code class="hljs javascript">
 var arr = [
   [ 1, 2, 3 ],
@@ -510,12 +510,14 @@ var arr = [
 ];
 var x = arr[ 2 ][ 0 ];
 				</code></pre>
-				<h4>Performance Issues</h4>
-				<ul>
-					<li>object references</li>
-					<li>element access</li>
-					<li>...</li>
-				</ul>
+				<div style="text-align: left">
+					<h4 class="no-text-transform">Performance Issues</h4>
+					<ul>
+						<li>many object references</li>
+						<li>element access</li>
+						<li>...</li>
+					</ul>
+				</div>
 				<aside class="notes">
 
 				</aside>
@@ -595,7 +597,7 @@ var x = arr[ 2 ][ 0 ];
 			<section class="center" data-state="icons" data-timing="60">
 				<h2>ndarrays</h2>
 				<ul>
-					<li class="fragment">used by most scientific computing libraries, includng Numpy</li>
+					<li class="fragment">used by most scientific computing libraries, including Numpy</li>
 					<li class="fragment">prior art in JS: <i>ndarray</i> package by Mikola Lysenko</li>
 					<li class="fragment"><i>stdlib ndarrays</i> are
 						<ul>
