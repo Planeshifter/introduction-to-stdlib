@@ -108,7 +108,7 @@
 			</section>
 
 			<section class="center" data-background-color="black" data-background-video-loop data-background-video-muted data-background-video="img/flowers.mp4" data-state="noicons" data-timing="25">
-				<div class="fragment">
+				<div>
 					<div class="fragment row">
 						<p class="column column-2">&nbsp;</p>
 						<p class="column column-4">
@@ -156,7 +156,7 @@
 
 			<section class="center" data-state="icons" data-timing="100">
 				<a href=""><img src="img/rhizome.png" alt="enlarge" class="undecorated"></a>
-				<h4 class="fragment">The JavaScript standard library is limited</h4>
+				<h4 class="fragment no-text-transform">The built-in JavaScript libraries are limited</h4>
 				<aside class="notes">
 					Here is the point where our library comes into play. As we have seen, JavaScript offers a plethora of useful utility libraries, but in terms of fundamental building blocks, thoroughly tested and reliable mathematical routines, there are still many blank spots.
 					My colleague Athan Reines and I were quite surprised when we found out that some of the standard Math object functions returned inaccurate results when tested against reference implementations in other languages. And while meanwhile most of these issues have been fixed, different browsers might return different results for the same function due to different algorithms.
@@ -625,7 +625,17 @@ var x = arr.get( 2, 0 );
 arr.get( 2, 0 ) => buffer[ strides[0]*2 + strides[1]*1 + offset ] => 9
 				</code></pre>
 				<aside class="notes">
-
+					<ul>
+						<li>
+							stride is the separation (in the underlying data buffer) of contiguous elements in each dimension
+						</li>
+						<li>
+							ndarray of rank/dimension N has N strides
+						</li>
+						<li>
+							as an end-users, do not need to worry about it
+						</li>
+					</ul>
 				</aside>
 			</section>
 
