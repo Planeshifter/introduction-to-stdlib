@@ -199,27 +199,43 @@
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="45">
 				<h2>Special Functions</h2>
 
 				<a href=""><img src="img/special_functions.png" alt="stdlib" class="undecorated"></a>
 
 				<aside class="notes">
-
+					<ul>
+						<li>more than 150 special functions</li>
+						<li>ported from or tested against reference implementations</li>
+						<li>functions needed for statistics and machine learning, functions to improve accuracy for special input ranges</li>
+					</ul>
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="45">
 				<h3>Probability Distributions</h3>
 
 				<a href=""><img src="img/probability_distributions.png" alt="stdlib" class="undecorated"></a>
 
 				<aside class="notes">
-
+					<ul>
+						<li>more than 35 probability distributions</li>
+						<li>distribution functions and distribution properties</li>
+						<li>factory methods and distribution constructors for reuse</li>
+					</ul>
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-background-image="img/normal_distribution.png"  data-state="noicons" data-timing="10">
+				<aside class="notes">
+					<ul>
+						<li>example namespace: uniform distribution</li>
+					</ul>
+				</aside>
+			</section>
+
+			<section class="center" data-state="icons" data-timing="60">
 				<h3 class="no-text-transform">Seedable Pseudorandom Number Generators (PRNGs)</h3>
 
 				<pre><code class="hljs javascript">
@@ -241,11 +257,15 @@ r = rand();
 				</code></pre>
 
 				<aside class="notes">
-
+					<ul>
+						<li>35+ pseudorandom number generators</li>
+						<li>seedable, in contrast to Math.random</li> <li>reproducibility</li>
+						<li>fully tested to ensure that generated numbers have the desired properties of the respective distributions</li>
+					</ul>
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="60">
 				<h3>Utilities</h3>
 
 				<a href=""><img src="img/utils.png" alt="stdlib" class="undecorated"></a>
@@ -255,13 +275,17 @@ r = rand();
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="45">
 				<h3>Assertions</h3>
 
 				<a href=""><img src="img/assertion.png" alt="stdlib" class="undecorated"></a>
 
 				<aside class="notes">
-
+					<ul>
+						<li>comprehensive assertion library</li>
+						<li>let others handle the tricky details for input validation (typeof null === 'object')</li>
+						<li>consistent APIs, checks for both primitive and object types + arrays</li>
+					</ul>
 				</aside>
 			</section>
 
@@ -271,33 +295,50 @@ r = rand();
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="30">
 				<h3>Datasets</h3>
 
 				<a href=""><img src="img/datasets.png" alt="stdlib" class="undecorated"></a>
 
 				<aside class="notes">
-
+					<ul>
+						<li>datasets for testing and development</li>
+						<li>quantitative data, images, textual data (state of the union addresses)</li>
+						<li>famous datasets: Anscombe's quartet, data of Charles Joseph Minard's famous cartographic depiction of Napoleon's Russian campaign of 1812</li>
+					</ul>
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="45">
 				<h3>Plotting</h3>
 
 				<a href=""><img src="img/plotting.png" alt="stdlib" class="undecorated"></a>
 
 				<aside class="notes">
-
+					<ul>
+						<li>API for exploratory and ad-hoc usage as well as to produce publication-ready graphics</li>
+						<li>usable in REPL (in contrast to d3.js and the like)</li>
+					</ul>
 				</aside>
 			</section>
 
-			<section class="center" data-state="icons">
+			<section class="center" data-state="icons" data-timing="45">
 				<h3>BLAS</h3>
 
 				<a href=""><img src="img/blas.png" alt="stdlib" class="undecorated"></a>
 
 				<aside class="notes">
-
+					<ul>
+						<li>
+							"Basic Linear Algebra Subprograms"
+						</li>
+						<li>
+							linear algebra, vector and matrix operations
+						</li>
+						<li>
+							WebAssembly and C implementations (via Node.js native addons), with pure JavaScript fallbacks
+						</li>
+					</ul>
 				</aside>
 			</section>
 
